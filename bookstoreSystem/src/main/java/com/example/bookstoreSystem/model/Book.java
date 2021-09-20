@@ -10,7 +10,7 @@ public class Book extends Product{
 	private int numberOfPages;
 	
 	@Column(name = "language", nullable = true)
-	private String language;
+	private BookLanguage language;
 	
 	public Book() {
 		super();
@@ -24,11 +24,11 @@ public class Book extends Product{
 		this.numberOfPages = numberOfPages;
 	}
 
-	public String getLanguage() {
+	public BookLanguage getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(String language) {
+	public void setLanguage(BookLanguage language) {
 		this.language = language;
 	}
 }
