@@ -12,12 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "userEntity")
@@ -59,6 +62,18 @@ public class User implements UserDetails{
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "userAuthority", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "authorityId", referencedColumnName = "id"))
 	private List<Authority> authorities;
+	
+	@JsonBackReference(value = "user_movement")
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Customer customer;
+	
+	@JsonBackReference(value = "systemAdmin-movement")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private BookstoreSystemAdministrator bookstoreSystemAdministrator;
+	
+	@JsonBackReference(value = "bookstoreAdmin-movement")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private BookstoreAdministrator bookstoreAdministrator;
 	
 	public User() {
 	}
@@ -176,5 +191,29 @@ public class User implements UserDetails{
 
 	public void setFirstLogin(boolean firstLogin) {
 		this.firstLogin = firstLogin;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public BookstoreSystemAdministrator getBookstoreSystemAdministrator() {
+		return bookstoreSystemAdministrator;
+	}
+
+	public void setBookstoreSystemAdministrator(BookstoreSystemAdministrator bookstoreSystemAdministrator) {
+		this.bookstoreSystemAdministrator = bookstoreSystemAdministrator;
+	}
+
+	public BookstoreAdministrator getBookstoreAdministrator() {
+		return bookstoreAdministrator;
+	}
+
+	public void setBookstoreAdministrator(BookstoreAdministrator bookstoreAdministrator) {
+		this.bookstoreAdministrator = bookstoreAdministrator;
 	}
 }
