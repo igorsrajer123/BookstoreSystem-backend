@@ -12,5 +12,5 @@ public interface PublisherRepository extends JpaRepository<Publisher, Long>{
 
 	List<Publisher> findAll();
 	
-	Publisher findOneById();
+	Publisher findOneById(Long id);
 }

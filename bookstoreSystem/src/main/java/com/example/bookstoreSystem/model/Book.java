@@ -2,6 +2,8 @@ package com.example.bookstoreSystem.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class Book extends Product{
@@ -9,6 +11,7 @@ public class Book extends Product{
 	@Column(name = "numberOfPages", nullable = true)
 	private int numberOfPages;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "language", nullable = true)
 	private BookLanguage language;
 	

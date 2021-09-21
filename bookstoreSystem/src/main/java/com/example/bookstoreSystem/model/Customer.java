@@ -20,21 +20,24 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "phoneNumber", nullable = false)
+	@Column(name = "phoneNumber", nullable = true)
 	private String phoneNumber;
 	
-	@Column(name = "dateOfBirth", nullable = false)
+	@Column(name = "dateOfBirth", nullable = true)
 	private LocalDate dateOfBirth;
 	
-	@Column(name = "address", nullable = false)
+	@Column(name = "address", nullable = true)
 	private String address;
 	
-	@Column(name = "city", nullable = false)
+	@Column(name = "city", nullable = true)
 	private String city;
 	
 	@JsonManagedReference(value = "user_movement")
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private User user;
+	
+	@Column(name = "processed", nullable = false)
+	private boolean processed;
 	
 	public Customer() {
 		super();
@@ -86,5 +89,13 @@ public class Customer {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isProcessed() {
+		return processed;
+	}
+
+	public void setProcessed(boolean processed) {
+		this.processed = processed;
 	}
 }

@@ -68,11 +68,11 @@ public class User implements UserDetails{
 	private Customer customer;
 	
 	@JsonBackReference(value = "systemAdmin-movement")
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private BookstoreSystemAdministrator bookstoreSystemAdministrator;
 	
 	@JsonBackReference(value = "bookstoreAdmin-movement")
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private BookstoreAdministrator bookstoreAdministrator;
 	
 	public User() {

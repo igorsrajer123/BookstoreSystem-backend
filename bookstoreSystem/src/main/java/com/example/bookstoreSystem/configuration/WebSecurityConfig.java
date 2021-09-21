@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -56,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 		.authorizeRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 		.antMatchers("/register").permitAll().antMatchers("/login").permitAll()
-		.antMatchers("/getUser").permitAll().antMatchers("/h2-console/**").permitAll()
+		.antMatchers("/getCurrentUser").permitAll().antMatchers("/activateAccount/*").permitAll().antMatchers("/h2-console/**").permitAll()
 		.antMatchers("/", "/*.html", "/favicon.ico","/*.js", "/*.css").permitAll()
 		.anyRequest().authenticated().and()
 		.cors().and()
@@ -69,6 +70,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(WebSecurity web) {
-		//TODO
+		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation");
+		
+		web.ignoring().antMatchers(HttpMethod.PUT, "/activateAccount/*");
+		
+		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*");
 	}
 }
