@@ -15,7 +15,9 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	Product findOneById(Long id);
 	
-	Product findOneByCode(int code);
+	Product findOneByName(String name);
+	
+	Product findOneByCode(String code);
 	
 	List<Product> findAllByType(ProductType type);
 	

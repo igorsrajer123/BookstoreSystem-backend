@@ -13,4 +13,6 @@ public interface WriterRepository extends JpaRepository<Writer, Long>{
 	List<Writer> findAll();
 	
 	Writer findOneById(Long id);
+	
+	Writer findOneByName(String name);
 }

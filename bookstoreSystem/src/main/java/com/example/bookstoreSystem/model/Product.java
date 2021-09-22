@@ -45,7 +45,7 @@ public class Product {
 	private ProductType type;
 	
 	@JsonIgnoreProperties("products")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Publisher publisher;
 	
 	public Product() {

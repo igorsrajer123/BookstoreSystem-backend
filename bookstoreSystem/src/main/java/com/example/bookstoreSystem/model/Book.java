@@ -1,9 +1,16 @@
 package com.example.bookstoreSystem.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Book extends Product{
@@ -14,6 +21,10 @@ public class Book extends Product{
 	@Enumerated(EnumType.STRING)
 	@Column(name = "language", nullable = true)
 	private BookLanguage language;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "genreBooks", joinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "genreId", referencedColumnName = "id"))
+	private List<Genre> genres;
 	
 	public Book() {
 		super();
@@ -33,5 +44,13 @@ public class Book extends Product{
 
 	public void setLanguage(BookLanguage language) {
 		this.language = language;
+	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
 	}
 }
