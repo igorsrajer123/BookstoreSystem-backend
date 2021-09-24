@@ -10,7 +10,7 @@ INSERT INTO bookstore(address, city, description, bookstore_name, number_of_vote
 INSERT INTO bookstore(address, city, description, bookstore_name, number_of_votes, rating) VALUES ('Apatinska 19', 'Beograd', 'Knjizara specijalizovana za fantastiku', 'Soma', 0, 0);
 
 --user password: 123
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('isapsw123@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', false, true, true);
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('isapsw1234@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', true, true, true);
 --user password: 1234
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('sysadmin@gmail.com', '$2a$10$Ng8dAJzSDmWjbsuQmKb7WeOl27Kc5DlySVmClnvfqaD7VAZqFW7v6', 'Marko', 'Markovic', 'ROLE_SYSTEM_ADMIN', true, true, true);
 --user password: 12345
@@ -28,7 +28,7 @@ INSERT INTO user_authority(user_id, authority_id) VALUES (4, 3);
 INSERT INTO user_authority(user_id, authority_id) VALUES (5, 3);
 
 --different users
-INSERT INTO customer(phone_number, date_of_birth, address, city, user_id, processed) VALUES ('+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd', 1, false);
+INSERT INTO customer(phone_number, date_of_birth, address, city, user_id, processed) VALUES ('+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd', 1, true);
 INSERT INTO bookstore_system_administrator(user_id) VALUES (2);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (3, 1);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (4, 2);
@@ -95,7 +95,7 @@ INSERT INTO genre(name) VALUES ('Dystopian Fiction');
 INSERT INTO genre(name) VALUES ('Novel');
 
 --products
-INSERT INTO product(id, code, name, price, description, published, type, publisher_id) VALUES (0, '4311', 'Lego Set', 999, 'DESCRIPTIONNNN', '2019-02-01', 'TOY', 15);
+INSERT INTO other_product(id, code, name, price, description, published, type, publisher_id) VALUES (0, '4311', 'Lego Set', 999, 'DESCRIPTIONNNN', '2019-02-01', 'TOY', 15);
 
 --books
 INSERT INTO book(id, code, name, price, description, published, type, publisher_id, number_of_pages, language) VALUES (1, '115521', 'Game of Thrones', 1555, 'descrption1234', '2020-05-01', 'BOOK', 1, 400, 'SERBIAN');

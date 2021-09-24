@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Product {
+public abstract class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,10 +47,6 @@ public class Product {
 	@JsonIgnoreProperties("products")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Publisher publisher;
-	
-	public Product() {
-		super();
-	}
 
 	public Long getId() {
 		return id;

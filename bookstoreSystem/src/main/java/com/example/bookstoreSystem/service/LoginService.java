@@ -54,7 +54,7 @@ public class LoginService implements UserDetailsService{
 		customer.getUser().setEnabled(true);
 		customer.getUser().setActivated(true);
 		customer.getUser().setType("ROLE_CUSTOMER");
-		customer.getUser().setFirstLogin(true);
+		customer.getUser().setFirstLogin(false);
 		customer.setProcessed(false);
 		List<Authority> authorities = authorityService.findByName("ROLE_CUSTOMER");
 		customer.getUser().setAuthorities(authorities);
