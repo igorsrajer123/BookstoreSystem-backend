@@ -44,6 +44,12 @@ public class User implements UserDetails{
 	@Column(name = "lastName", nullable = true)
 	private String lastName;
 	
+	@Column(name = "profileImageName", nullable = true)
+	private String profileImageName;
+	
+	@Column(name = "profileImagePath", nullable = true)
+	private String profileImagePath;
+	
 	@Column(name = "activated", nullable = true)
 	private boolean activated;
 	
@@ -215,5 +221,21 @@ public class User implements UserDetails{
 
 	public void setBookstoreAdministrator(BookstoreAdministrator bookstoreAdministrator) {
 		this.bookstoreAdministrator = bookstoreAdministrator;
+	}
+
+	public String getProfileImageName() {
+		return profileImageName;
+	}
+
+	public void setProfileImageName(String profileImageName) {
+		this.profileImageName = profileImageName;
+	}
+
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
 	}
 }

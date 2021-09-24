@@ -70,9 +70,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation");
+		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
-												"/getGenreById/*", "/getGenreByName/*", "/getAllProducts", "/getProductById/*", "/getProductByName/*", "/getProductByCode/*", "/getProductsByType/*");
+												"/getGenreById/*", "/getGenreByName/*", "/getAllProducts", "/getProductById/*", "/getProductByName/*", "/getProductByCode/*", "/getProductsByType/*",
+												"/getProfilePhoto");
 	}
 }
