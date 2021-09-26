@@ -15,4 +15,6 @@ public interface WriterRepository extends JpaRepository<Writer, Long>{
 	Writer findOneById(Long id);
 	
 	Writer findOneByName(String name);
+	
+	List<Writer> findAllByBooks_Name(String name);
 }

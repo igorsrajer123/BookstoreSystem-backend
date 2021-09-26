@@ -57,7 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 		.authorizeRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 		.antMatchers("/register").permitAll().antMatchers("/login").permitAll()
-		.antMatchers("/getCurrentUser").permitAll().antMatchers("/activateAccount/*").permitAll().antMatchers("/h2-console/**").permitAll()
+		.antMatchers("/getCurrentUser").permitAll().antMatchers("/activateAccount/*").permitAll()
+		.antMatchers("/uploads/*").permitAll().antMatchers("/h2-console/**").permitAll()
 		.antMatchers("/", "/*.html", "/favicon.ico","/*.js", "/*.css").permitAll()
 		.anyRequest().authenticated().and()
 		.cors().and()
@@ -70,10 +71,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage");
+		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
-												"/getGenreById/*", "/getGenreByName/*", "/getAllProducts", "/getProductById/*", "/getProductByName/*", "/getProductByCode/*", "/getProductsByType/*",
-												"/getProfilePhoto");
+												"/getGenreById/*", "/getGenreByName/*", "/getAllProducts", "/getProductById/*", "/getProductByName/*", "/getProductByCode/*",
+												"/getProductsByType/*", "/getAllWriters", "/getBookWriters/*");
 	}
 }

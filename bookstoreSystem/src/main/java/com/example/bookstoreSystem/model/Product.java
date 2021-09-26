@@ -44,6 +44,9 @@ public abstract class Product {
 	@Column(name = "type", nullable = false)
 	private ProductType type;
 	
+	@Column(name = "coverImage", nullable = true)
+	private String coverImage;
+	
 	@JsonIgnoreProperties("products")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Publisher publisher;
@@ -110,5 +113,13 @@ public abstract class Product {
 
 	public void setType(ProductType type) {
 		this.type = type;
+	}
+
+	public String getCoverImage() {
+		return coverImage;
+	}
+
+	public void setCoverImage(String coverImage) {
+		this.coverImage = coverImage;
 	}
 }

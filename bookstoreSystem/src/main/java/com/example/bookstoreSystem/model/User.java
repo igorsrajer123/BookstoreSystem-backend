@@ -47,9 +47,6 @@ public class User implements UserDetails{
 	@Column(name = "profileImageName", nullable = true)
 	private String profileImageName;
 	
-	@Column(name = "profileImagePath", nullable = true)
-	private String profileImagePath;
-	
 	@Column(name = "activated", nullable = true)
 	private boolean activated;
 	
@@ -229,13 +226,5 @@ public class User implements UserDetails{
 
 	public void setProfileImageName(String profileImageName) {
 		this.profileImageName = profileImageName;
-	}
-
-	public String getProfileImagePath() {
-		return profileImagePath;
-	}
-
-	public void setProfileImagePath(String profileImagePath) {
-		this.profileImagePath = profileImagePath;
 	}
 }
