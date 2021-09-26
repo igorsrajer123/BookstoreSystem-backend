@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(loginService).passwordEncoder(passwordEncoder());
 	}
-	
+	   
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -73,8 +73,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*");
 		
+		web.ignoring().antMatchers(HttpMethod.PUT, "/updateUserInformation");
+		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllProducts", "/getProductById/*", "/getProductByName/*", "/getProductByCode/*",
-												"/getProductsByType/*", "/getAllWriters", "/getBookWriters/*");
+												"/getProductsByType/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*");
 	}
 }

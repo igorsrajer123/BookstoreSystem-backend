@@ -1,6 +1,7 @@
 package com.example.bookstoreSystem.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,6 +44,18 @@ public class User implements UserDetails{
 	
 	@Column(name = "lastName", nullable = true)
 	private String lastName;
+	
+	@Column(name = "phoneNumber", nullable = true)
+	private String phoneNumber;
+	
+	@Column(name = "dateOfBirth", nullable = true)
+	private LocalDate dateOfBirth;
+	
+	@Column(name = "address", nullable = true)
+	private String address;
+	
+	@Column(name = "city", nullable = true)
+	private String city;
 	
 	@Column(name = "profileImageName", nullable = true)
 	private String profileImageName;
@@ -226,5 +239,37 @@ public class User implements UserDetails{
 
 	public void setProfileImageName(String profileImageName) {
 		this.profileImageName = profileImageName;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

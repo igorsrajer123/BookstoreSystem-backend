@@ -29,4 +29,17 @@ public class UserService {
 	public User save(User user) {
 		return userRepository.save(user);
 	}
+	
+	public User updateUserInformation(User user) {
+		User myUser = userRepository.findOneById(user.getId());
+		myUser.setFirstName(user.getFirstName());
+		myUser.setLastName(user.getLastName());
+		myUser.setPhoneNumber(user.getPhoneNumber());
+		myUser.setAddress(user.getAddress());
+		myUser.setCity(user.getCity());
+		myUser.setDateOfBirth(user.getDateOfBirth());
+		userRepository.save(myUser);
+		
+		return myUser;
+	}
 }
