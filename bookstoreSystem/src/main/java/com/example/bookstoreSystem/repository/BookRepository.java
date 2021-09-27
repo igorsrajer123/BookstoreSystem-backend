@@ -12,4 +12,6 @@ import com.example.bookstoreSystem.model.BookLanguage;
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
 	List<Book> findAllByLanguage(BookLanguage language);
+	
+	List<Book> findAllByGenres_Name(String name);
 }

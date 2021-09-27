@@ -25,7 +25,7 @@ public class WriterController {
 	}
 	
 	@GetMapping(value = "/getBookWriters/{bookName}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Writer>> getAllWriters(@PathVariable("bookName") String name) {
+	public ResponseEntity<List<Writer>> getBookWriters(@PathVariable("bookName") String name) {
 		return new ResponseEntity<List<Writer>>(writerService.findAllByBookName(name) , HttpStatus.OK);
 	}
 }

@@ -15,7 +15,11 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	List<Book> findAllByLanguage(BookLanguage language) {
+	public List<Book> findAllByLanguage(BookLanguage language) {
 		return bookRepository.findAllByLanguage(language);
+	}
+	
+	public List<Book> findAllByGenreName(String name) {
+		return bookRepository.findAllByGenres_Name(name);
 	}
 }
