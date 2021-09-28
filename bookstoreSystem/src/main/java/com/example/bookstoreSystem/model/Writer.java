@@ -23,8 +23,11 @@ public class Writer {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Column(name = "description", nullable = true)
+	@Column(name = "description", nullable = true, columnDefinition="TEXT")
 	private String description;
+	
+	@Column(name = "image", nullable = true)
+	private String image;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "writerBooks", joinColumns = @JoinColumn(name = "writerId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"))
@@ -64,5 +67,13 @@ public class Writer {
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

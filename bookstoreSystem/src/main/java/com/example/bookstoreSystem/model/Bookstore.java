@@ -20,7 +20,7 @@ public class Bookstore {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "bookstoreName", nullable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 	
 	@Column(name = "address")
@@ -29,8 +29,11 @@ public class Bookstore {
 	@Column(name = "city")
 	private String city;
 	
-	@Column(name = "description", nullable = true)
-	private String description;
+	@Column(name = "contactPhone")
+	private String contactPhone;
+	
+	@Column(name = "photo")
+	private String photo;
 	
 	@Column(name = "rating")
 	private double rating;
@@ -78,14 +81,6 @@ public class Bookstore {
 		this.city = city;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public double getRating() {
 		return rating;
 	}
@@ -108,5 +103,21 @@ public class Bookstore {
 
 	public void setBookstoreAdministrators(List<BookstoreAdministrator> bookstoreAdministrators) {
 		this.bookstoreAdministrators = bookstoreAdministrators;
+	}
+
+	public String getContactPhone() {
+		return contactPhone;
+	}
+
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }

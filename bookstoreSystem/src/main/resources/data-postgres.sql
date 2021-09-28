@@ -5,9 +5,9 @@ INSERT INTO authority(name) VALUES ('ROLE_BOOKSTORE_ADMIN');
 INSERT INTO authority(name) VALUES ('ROLE_SELLER');
 
 --bookstores
-INSERT INTO bookstore(address, city, description, bookstore_name, number_of_votes, rating) VALUES ('Frankopanova 31', 'Novi Sad', 'Prva knjizara ikada nastala', 'Agora', 0, 0);
-INSERT INTO bookstore(address, city, description, bookstore_name, number_of_votes, rating) VALUES ('Mileticeva 11', 'Zrenjanin', 'Knjizara za penzionere', 'Epitaf', 0, 0);
-INSERT INTO bookstore(address, city, description, bookstore_name, number_of_votes, rating) VALUES ('Apatinska 19', 'Beograd', 'Knjizara specijalizovana za fantastiku', 'Soma', 0, 0);
+INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Frankopanova 31', 'Novi Sad', 'Agora', 0, 0, '+3819922352', 'bookstore1.webp');
+INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Mileticeva 11', 'Zrenjanin', 'Epitaf', 0, 0, '+3816677532', 'bookstore2.jpg');
+INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Apatinska 19', 'Beograd', 'Soma', 0, 0, '+3815604435', 'bookstore3.jpg');
 
 --user password: 123
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city) VALUES ('isapsw1234@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', true, true, true, '+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd');
@@ -57,16 +57,50 @@ INSERT INTO publisher(name, address, city, phone_number) VALUES ('Laguna', 'Part
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Mali princ', 'Radnicka 62', 'Beograd', '+381555432'); --20
 
 --writers
-INSERT INTO writer(name, description) VALUES ('George R. R. Martin', 'description');
-INSERT INTO writer(name, description) VALUES ('J. K. Rowling', 'description');
-INSERT INTO writer(name, description) VALUES ('J. R. R. Tolkin', 'description');
-INSERT INTO writer(name, description) VALUES ('William Shakespeare', 'description');
-INSERT INTO writer(name, description) VALUES ('Agatha Christie', 'description');
-INSERT INTO writer(name, description) VALUES ('Edgar Allan Poe', 'description');
-INSERT INTO writer(name, description) VALUES ('Mark Twain', 'description');
-INSERT INTO writer(name, description) VALUES ('Stephen King', 'description');
-INSERT INTO writer(name, description) VALUES ('Ernest Hemingway', 'description');
-INSERT INTO writer(name, description) VALUES ('George Orwell', 'description'); --10
+INSERT INTO writer(name, description, image) VALUES ('George R. R. Martin', 
+				'George R.R. Martin, in full George Raymond Richard Martin, original name George Raymond Martin, 
+				(born September 20, 1948, Bayonne, New Jersey, U.S.), American writer of fantasy, best known for his Song of Ice and Fire series (1996– ), 
+				a bloody saga about various factions vying for control of a fictional kingdom.', 
+				'georgeMartin.jpg');
+INSERT INTO writer(name, description, image) VALUES ('J. K. Rowling',
+														'J.K. Rowling is the British author who created the popular and critically acclaimed Harry Potter series (seven books published between 1997 and 2007),
+														 about a lonely orphan who discovers that he is actually a wizard and enrolls in the Hogwarts School of Witchcraft and Wizardry.',
+														'rowling.jpg');
+INSERT INTO writer(name, description, image) VALUES ('J. R. R. Tolkien', 
+															'J.R.R. Tolkien, in full John Ronald Reuel Tolkien, (born January 3, 1892, Bloemfontein, South Africa—died September 2, 1973, Bournemouth, 
+															Hampshire, England), 
+															English writer and scholar who achieved fame with his childrenss book The Hobbit (1937) and his 
+															richly inventive epic fantasy The Lord of the Rings (1954–55).', 
+															'tolkien.jpg');
+INSERT INTO writer(name, description, image) VALUES ('William Shakespeare', 
+													'William Shakespeare (bapt. 26 April 1564 – 23 April 1616) was an English playwright, poet, and actor, widely regarded as the greatest 
+													writer in the English language and the worlds greatest dramatist. He is often called Englands national poet and the "Bard of Avon" (or simply "the Bard").', 
+													'shakespeare.jpg');
+INSERT INTO writer(name, description, image) VALUES ('Agatha Christie',
+													'Agatha Christie was an English detective novelist and playwright. She wrote some 75 novels, including 66 detective novels and 14 short story collections. 
+													Christie is perhaps the worlds most famous mystery writer and is one of the best-selling novelists of all time.', 
+													'agathaChristie.jpg');
+INSERT INTO writer(name, description, image) VALUES ('Edgar Allan Poe', 
+													'Edgar Allan Poe was an American writer, poet, critic and editor best known for evocative short stories and poems that captured the imagination and interest of
+													readers around the world. His imaginative storytelling and tales of mystery and horror gave birth to the modern detective story.', 
+													'edgarAllanPoe.jpg');
+INSERT INTO writer(name, description, image) VALUES ('Mark Twain', 
+													'Mark Twain was an American humorist, novelist, and travel writer. Today he is best remembered as the author of The Adventures of Tom Sawyer (1876)
+													and Adventures of Huckleberry Finn (1885). Twain is widely considered one of the greatest American writers of all time.', 
+													'markTwain.jpg');
+INSERT INTO writer(name, description, image) VALUES ('Stephen King', 
+														'Mark Twain was an American humorist, novelist, and travel writer. Today he is best remembered as the author of The Adventures of Tom Sawyer (1876) and Adventures of Huckleberry Finn (1885).
+														 Twain is widely considered one of the greatest American writers of all time.', 
+														'stephenKing.jpg');
+INSERT INTO writer(name, description, image) VALUES ('Ernest Hemingway', 
+														'Ernest Hemingway served in World War I and worked in journalism before publishing his story collection In Our Time. He was renowned for novels 
+														like The Sun Also Rises, A Farewell to Arms, For Whom the Bell Tolls and The Old Man and the Sea, which won the Pulitzer Prize in 1953. In 1954,
+														Hemingway won the Nobel Prize.', 
+														'ernestHemingway.jpg');
+INSERT INTO writer(name, description, image) VALUES ('George Orwell', 
+													'George Orwell, pseudonym of Eric Arthur Blair, (born June 25, 1903, Motihari, Bengal, India—died January 21, 1950, London, England), English novelist, essayist,
+													 and critic famous for his novels Animal Farm (1945) and Nineteen Eighty-four (1949), the latter a profound anti-utopian novel that examines the dangers of totalitarian rule.', 
+													'georgeOrwell.jpg'); --10
 
 --book genres
 INSERT INTO genre(name) VALUES ('Horror');
