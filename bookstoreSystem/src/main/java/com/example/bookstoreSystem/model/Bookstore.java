@@ -45,6 +45,10 @@ public class Bookstore {
 	@OneToMany(mappedBy = "bookstore", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<BookstoreAdministrator> bookstoreAdministrators;
 	
+	@JsonIgnoreProperties(value = {"bookstore"}, allowSetters = true)
+	@OneToMany(mappedBy = "bookstore", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Seller> bookstoreSellers;
+	
 	public Bookstore() {
 		super();
 	}
@@ -119,5 +123,13 @@ public class Bookstore {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public List<Seller> getBookstoreSellers() {
+		return bookstoreSellers;
+	}
+
+	public void setBookstoreSellers(List<Seller> bookstoreSellers) {
+		this.bookstoreSellers = bookstoreSellers;
 	}
 }

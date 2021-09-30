@@ -18,21 +18,21 @@ INSERT INTO user_entity(email, password, first_name, last_name, type, activated,
 --user password: 54321
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('admin2@gmail.com', '$2a$10$qNyWkzQz63f1Q2xTqTu.Meopa.MMD9pVAie9isAhm9N6A3.xyQLoO', 'Samjuel', 'Hrubik', 'ROLE_BOOKSTORE_ADMIN', true, true, true);
 --user password: 55555
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('admin3@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Aleksandar', 'Paripovic', 'ROLE_BOOKSTORE_ADMIN', true, true, true);
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('seller@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Aleksandar', 'Paripovic', 'ROLE_SELLER', true, true, true);
 
 --user authorities
 INSERT INTO user_authority(user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority(user_id, authority_id) VALUES (2, 2);
 INSERT INTO user_authority(user_id, authority_id) VALUES (3, 3);
 INSERT INTO user_authority(user_id, authority_id) VALUES (4, 3);
-INSERT INTO user_authority(user_id, authority_id) VALUES (5, 3);
+INSERT INTO user_authority(user_id, authority_id) VALUES (5, 4);
 
 --different users
 INSERT INTO customer(user_id, processed) VALUES (1, true);
 INSERT INTO bookstore_system_administrator(user_id) VALUES (2);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (3, 1);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (4, 2);
-INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (5, 3);
+INSERT INTO seller(user_id, bookstore_id) VALUES (5, 3);
 
 --publishers
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Magnet', 'Dalmatinska 12', 'Beograd', '+3815435');

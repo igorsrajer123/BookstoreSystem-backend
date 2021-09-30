@@ -91,6 +91,10 @@ public class User implements UserDetails{
 	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private BookstoreAdministrator bookstoreAdministrator;
 	
+	@JsonBackReference(value = "seller-movement")
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Seller seller;
+	
 	public User() {
 	}
 	
@@ -271,5 +275,13 @@ public class User implements UserDetails{
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 }
