@@ -46,13 +46,11 @@ public class LoginService implements UserDetailsService{
 	}
 	
 	public Customer register(Customer customer) {
-		User myUser = (User) loadUserByUsername(customer.getUser().getEmail());
-		
-		if(myUser != null) return null;
+		if(loadUserByUsername(customer.getUser().getEmail()) != null) return null;
 		
 		customer.getUser().setPassword(passwordEncoder.encode(customer.getUser().getPassword()));
 		customer.getUser().setEnabled(true);
-		customer.getUser().setActivated(true);
+		customer.getUser().setActivated(false);
 		customer.getUser().setType("ROLE_CUSTOMER");
 		customer.getUser().setFirstLogin(false);
 		customer.setProcessed(false);

@@ -43,39 +43,28 @@ public class LoginController {
 	
 	@PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserTokenState> login(@RequestBody JwtAuthenticationRequest request, HttpServletResponse response) throws AuthenticationException, IOException{
-		User myUser = new User(request.getUsername(), request.getPassword());
-		myUser = loginService.login(myUser);
-		
-		if(myUser == null) return new ResponseEntity<UserTokenState>(HttpStatus.NOT_FOUND);
+		if(loginService.login(new User(request.getUsername(), request.getPassword())) == null) return new ResponseEntity<UserTokenState>(HttpStatus.NOT_FOUND);
 		
 		final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
 		User user = (User) authentication.getPrincipal();
-		String token = tokenUtils.generateToken(user.getUsername());
-		int expires = tokenUtils.getExpiredIn();
 		
-		return ResponseEntity.ok(new UserTokenState(token, expires));
+		return ResponseEntity.ok(new UserTokenState(tokenUtils.generateToken(user.getUsername()), tokenUtils.getExpiredIn()));
 	}
 	
 	@GetMapping(value = "/getCurrentUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserDto> getCurrentUser(HttpServletRequest request) {
-		String myToken = tokenUtils.getToken(request);
-		String email = tokenUtils.getUsernameFromToken(myToken);
-		User myUser = userService.findOneByEmail(email);
+		User myUser = userService.findOneByEmail(tokenUtils.getUsernameFromToken(tokenUtils.getToken(request)));
 		
 		if(myUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		UserDto userDto = new UserDto(myUser);
-		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+		return new ResponseEntity<UserDto>(new UserDto(myUser), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Customer> register(@RequestBody Customer customer) throws Exception {
-		Customer myCustomer = loginService.register(customer);
+		if(loginService.register(customer) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		if(myCustomer == null) return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
-		
-		return new ResponseEntity<Customer>(myCustomer, HttpStatus.OK);
+		return new ResponseEntity<Customer>(loginService.register(customer), HttpStatus.OK);
 	}
 }
