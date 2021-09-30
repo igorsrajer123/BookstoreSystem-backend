@@ -1,5 +1,6 @@
 package com.example.bookstoreSystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bookstoreSystem.dto.UserDto;
 import com.example.bookstoreSystem.model.User;
 import com.example.bookstoreSystem.service.UserService;
 
@@ -25,22 +27,27 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping(value = "/getAllUsers", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<User>> getAllUsers() {
-		return new ResponseEntity<List<User>>(userService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<UserDto>> getAllUsers() {
+		if(userService.findAll() == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		List<UserDto> usersDto = new ArrayList<UserDto>();
+		userService.findAll().forEach(user -> usersDto.add(new UserDto(user)));
+		
+		return new ResponseEntity<List<UserDto>>(usersDto, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getUserById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+	public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id) {
 		if(userService.findOneById(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<User>(userService.findOneById(id), HttpStatus.OK);
+		return new ResponseEntity<UserDto>(new UserDto(userService.findOneById(id)), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getUserByEmail/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+	public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
 		if(userService.findOneByEmail(email) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<User>(userService.findOneByEmail(email), HttpStatus.OK);
+		return new ResponseEntity<UserDto>(new UserDto(userService.findOneByEmail(email)), HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_SYSTEM_ADMIN', 'ROLE_CUSTOMER', 'ROLE_BOOKSTORE_ADMIN', 'ROLE_SELLER')")

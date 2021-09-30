@@ -12,13 +12,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookstoreSystem.authentication.JwtAuthenticationRequest;
+import com.example.bookstoreSystem.dto.UserDto;
 import com.example.bookstoreSystem.model.Customer;
 import com.example.bookstoreSystem.model.User;
 import com.example.bookstoreSystem.model.UserTokenState;
@@ -37,9 +37,6 @@ public class LoginController {
 	
 	@Autowired
 	private TokenUtils tokenUtils;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -62,14 +59,15 @@ public class LoginController {
 	}
 	
 	@GetMapping(value = "/getCurrentUser", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getCurrentUser(HttpServletRequest request) {
+	public ResponseEntity<UserDto> getCurrentUser(HttpServletRequest request) {
 		String myToken = tokenUtils.getToken(request);
 		String email = tokenUtils.getUsernameFromToken(myToken);
 		User myUser = userService.findOneByEmail(email);
 		
 		if(myUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<User>(myUser, HttpStatus.OK);
+		UserDto userDto = new UserDto(myUser);
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,20 +77,5 @@ public class LoginController {
 		if(myCustomer == null) return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<Customer>(myCustomer, HttpStatus.OK);
-	}
-	
-	@PostMapping(value = "/changePassword", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> changePass(@RequestBody String[] data, HttpServletRequest request) {
-		String myToken = tokenUtils.getToken(request);
-		String email = tokenUtils.getUsernameFromToken(myToken);
-		User myUser = userService.findOneByEmail(email);
-		
-		if(myUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		
-		myUser.setPassword(passwordEncoder.encode(data[0]));
-		myUser.setFirstLogin(false);
-		myUser = userService.save(myUser);
-		
-		return new ResponseEntity<User>(myUser, HttpStatus.OK);
 	}
 }

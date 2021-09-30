@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,33 +21,29 @@ public abstract class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	protected Long id;
 	
 	@Column(name = "code", nullable = false, unique = true)
-	private String code;
+	protected String code;
 	
 	@Column(name = "name", nullable = false)
-	private String name;
+	protected String name;
 	
 	@Column(name = "description", nullable = false)
-	private String description;
+	protected String description;
 	
 	@Column(name = "price", nullable = false)
-	private double price;
+	protected double price;
 	
 	@Column(name = "published", nullable = false)
-	private LocalDate published;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "type", nullable = false)
-	private ProductType type;
+	protected LocalDate published;
 	
 	@Column(name = "coverImage", nullable = true)
-	private String coverImage;
+	protected String coverImage;
 	
 	@JsonIgnoreProperties("products")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Publisher publisher;
+	protected Publisher publisher;
 
 	public Long getId() {
 		return id;
@@ -105,14 +99,6 @@ public abstract class Product {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public ProductType getType() {
-		return type;
-	}
-
-	public void setType(ProductType type) {
-		this.type = type;
 	}
 
 	public String getCoverImage() {

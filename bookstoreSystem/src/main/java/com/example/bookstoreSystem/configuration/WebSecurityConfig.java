@@ -74,8 +74,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
-												"/getGenreById/*", "/getGenreByName/*", "/getAllProducts", "/getProductById/*", "/getProductByName/*", "/getProductByCode/*",
-												"/getProductsByType/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",
-												"/getBooksByGenre/*", "/getAllBookstores", "/getBookstoreById/*");
+												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",
+												"/getBooksByGenre/*", "/getAllBookstores", "/getBookstoreById/*", "/getAllBooks", "/getBookById/*", "/getBookByName/*", 
+												"/getBookByCode/*", "/getAllOtherProducts", "/getOtherProductById/*", "/getOtherProductByName/*", "/getOtherProductByCode/*",
+												"/getOtherProductsByType/*");
 	}
 }

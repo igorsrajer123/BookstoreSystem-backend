@@ -1,5 +1,6 @@
 package com.example.bookstoreSystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bookstoreSystem.model.Genre;
+import com.example.bookstoreSystem.dto.GenreDto;
 import com.example.bookstoreSystem.service.GenreService;
 
 @RestController
@@ -21,21 +22,26 @@ public class GenreController {
 	
 	
 	@GetMapping(value = "/getAllGenres", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Genre>> getAllGenres() {
-		return new ResponseEntity<List<Genre>>(genreService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<GenreDto>> getAllGenres() {
+		if(genreService.findAll() == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		List<GenreDto> genresDto = new ArrayList<GenreDto>();
+		genreService.findAll().forEach(genre -> genresDto.add(new GenreDto(genre)));
+		
+		return new ResponseEntity<List<GenreDto>>(genresDto, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getGenreById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Genre> getGenreById(@PathVariable("id") Long id) {
+	public ResponseEntity<GenreDto> getGenreById(@PathVariable("id") Long id) {
 		if(genreService.findOneById(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<Genre>(genreService.findOneById(id), HttpStatus.OK);
+		return new ResponseEntity<GenreDto>(new GenreDto(genreService.findOneById(id)), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getGenreByName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Genre> getGenreByName(@PathVariable("name") String name) {
+	public ResponseEntity<GenreDto> getGenreByName(@PathVariable("name") String name) {
 		if(genreService.findOneByName(name) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<Genre>(genreService.findOneByName(name), HttpStatus.OK);
+		return new ResponseEntity<GenreDto>(new GenreDto(genreService.findOneByName(name)), HttpStatus.OK);
 	}
 }

@@ -15,6 +15,26 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
+	public List<Book> findAll() {
+		return bookRepository.findAll();
+	}
+	
+	public Book findOneById(Long id) {
+		return bookRepository.findOneById(id);
+	}
+	
+	public Book findOneByName(String name) {
+		return bookRepository.findOneByName(name);
+	}
+	
+	public Book findOneByCode(String code) {
+		return bookRepository.findOneByCode(code);
+	}
+	
+	public List<Book> findAllByPublisherId(Long id) {
+		return bookRepository.findAllByPublisherId(id);
+	}
+	
 	public List<Book> findAllByLanguage(BookLanguage language) {
 		return bookRepository.findAllByLanguage(language);
 	}

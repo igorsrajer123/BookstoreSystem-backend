@@ -1,5 +1,6 @@
 package com.example.bookstoreSystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bookstoreSystem.model.Book;
+import com.example.bookstoreSystem.dto.BookDto;
 import com.example.bookstoreSystem.service.BookService;
 
 @RestController
@@ -19,8 +20,44 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
+	@GetMapping(value = "/getAllBooks", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<BookDto>> getAllBooks() {
+		if(bookService.findAll() == null)  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		List<BookDto> booksDto = new ArrayList<BookDto>();
+		bookService.findAll().forEach(book -> booksDto.add(new BookDto(book)));
+		
+		return new ResponseEntity<List<BookDto>>(booksDto, HttpStatus.OK); 
+	}
+	
+	@GetMapping(value = "/getBookById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookDto> getBookById(@PathVariable("id") Long id) {
+		if(bookService.findOneById(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneById(id)), HttpStatus.OK); 
+	}
+	
+	@GetMapping(value = "/getBookByName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookDto> getBookByName(@PathVariable("name") String name) {
+		if(bookService.findOneByName(name) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneByName(name)), HttpStatus.OK); 
+	}
+	
+	@GetMapping(value = "/getBookByCode/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookDto> getBookByCode(@PathVariable("code") String code) {
+		if(bookService.findOneByCode(code) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneByCode(code)), HttpStatus.OK); 
+	}
+	
 	@GetMapping(value = "/getBooksByGenre/{genreName}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Book>> getBooksByGenre(@PathVariable("genreName") String name) {
-		return new ResponseEntity<List<Book>>(bookService.findAllByGenreName(name), HttpStatus.OK);
+	public ResponseEntity<List<BookDto>> getBooksByGenre(@PathVariable("genreName") String name) {
+		if(bookService.findAllByGenreName(name) == null)  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		List<BookDto> booksDto = new ArrayList<BookDto>();
+		bookService.findAllByGenreName(name).forEach(book -> booksDto.add(new BookDto(book)));
+		
+		return new ResponseEntity<List<BookDto>>(booksDto, HttpStatus.OK);
 	}
 }

@@ -11,7 +11,17 @@ import com.example.bookstoreSystem.model.BookLanguage;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
+	List<Book> findAll();
+	
+	Book findOneById(Long id);
+	
+	Book findOneByName(String name);
+	
+	Book findOneByCode(String code);
+	
 	List<Book> findAllByLanguage(BookLanguage language);
 	
 	List<Book> findAllByGenres_Name(String name);
+	
+	List<Book> findAllByPublisherId(Long id);
 }
