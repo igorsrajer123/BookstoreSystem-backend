@@ -64,6 +64,7 @@ public class UserService {
 		
 		myUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		myUser.setLastPasswordResetDate(new Timestamp(timeProvider.now().getTime()));
+		myUser.setFirstLogin(false);
 		userRepository.save(myUser);
 		
 		return myUser;

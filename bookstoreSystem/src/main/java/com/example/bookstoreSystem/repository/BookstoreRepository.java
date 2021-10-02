@@ -13,4 +13,6 @@ public interface BookstoreRepository extends JpaRepository<Bookstore, Long>{
 	List<Bookstore> findAll();
 	
 	Bookstore findOneById(Long id);
+	
+	Bookstore findOneByBookstoreAdministrators_Id(Long id);
 }

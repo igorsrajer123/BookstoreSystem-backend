@@ -36,4 +36,11 @@ public class BookstoreController {
 		
 		return new ResponseEntity<BookstoreDto>(new BookstoreDto(bookstoreService.findOneById(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getBookstoreByAdminId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookstoreDto> getBookstoreByAdminId(@PathVariable("id") Long id) {
+		if(bookstoreService.findOneByBookstoreAdministratorId(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookstoreDto>(new BookstoreDto(bookstoreService.findOneByBookstoreAdministratorId(id)), HttpStatus.OK);
+	}
 }

@@ -10,9 +10,9 @@ INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phon
 INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Apatinska 19', 'Beograd', 'Soma', 0, 0, '+3815604435', 'bookstore3.jpg');
 
 --user password: 123
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city) VALUES ('isapsw1234@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', true, true, true, '+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd');
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city) VALUES ('isapsw1234@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', true, true, false, '+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd');
 --user password: 1234
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('sysadmin@gmail.com', '$2a$10$Ng8dAJzSDmWjbsuQmKb7WeOl27Kc5DlySVmClnvfqaD7VAZqFW7v6', 'Marko', 'Markovic', 'ROLE_SYSTEM_ADMIN', true, true, true, '+3816656213', '09/26/1994', 'Frankopanova 9', 'Novi Sad', 'sysAdmin.jpg');
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('sysadmin@gmail.com', '$2a$10$Ng8dAJzSDmWjbsuQmKb7WeOl27Kc5DlySVmClnvfqaD7VAZqFW7v6', 'Marko', 'Markovic', 'ROLE_SYSTEM_ADMIN', true, true, false, '+3816656213', '09/26/1994', 'Frankopanova 9', 'Novi Sad', 'sysAdmin.jpg');
 --user password: 12345
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('admin1@gmail.com', '$2a$10$gpHocgjdblYRnD.O/ri.qeeIoaLm8PZuQymydhgASYijPVM2q4tH2', 'Sima', 'Simonovic', 'ROLE_BOOKSTORE_ADMIN', true, true, true);
 --user password: 54321

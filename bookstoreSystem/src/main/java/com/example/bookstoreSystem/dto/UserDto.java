@@ -16,16 +16,17 @@ public class UserDto {
 	private String city;
 	private String profileImageName;
 	private String type;
+	private boolean firstLogin;
 	
 	public UserDto() {
 		super();
 	}
 	
 	public UserDto(User u) {
-		this(u.getId(), u.getEmail(), u.getFirstName(), u.getLastName(), u.getAddress(), u.getCity(), u.getPhoneNumber(), u.getDateOfBirth(), u.getType(), u.getProfileImageName());
+		this(u.getId(), u.getEmail(), u.getFirstName(), u.getLastName(), u.getAddress(), u.getCity(), u.getPhoneNumber(), u.getDateOfBirth(), u.getType(), u.getProfileImageName(), u.isFirstLogin());
 	}
 	
-	public UserDto(Long id, String email, String firstName, String lastName, String address, String city, String phoneNumber, LocalDate dateOfBirth, String type, String profileImageName) {
+	public UserDto(Long id, String email, String firstName, String lastName, String address, String city, String phoneNumber, LocalDate dateOfBirth, String type, String profileImageName, boolean firstLogin) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -37,6 +38,7 @@ public class UserDto {
 		this.dateOfBirth = dateOfBirth;
 		this.type = type;
 		this.profileImageName = profileImageName;
+		this.firstLogin = firstLogin;
 	}
 	
 	public Long getId() {
@@ -117,5 +119,13 @@ public class UserDto {
 	
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public boolean isFirstLogin() {
+		return firstLogin;
+	}
+
+	public void setFirstLogin(boolean firstLogin) {
+		this.firstLogin = firstLogin;
 	}
 }

@@ -21,4 +21,8 @@ public class BookstoreService {
 	public Bookstore findOneById(Long id) {
 		return bookstoreRepository.findOneById(id);
 	}
+	
+	public Bookstore findOneByBookstoreAdministratorId(Long id) {
+		return bookstoreRepository.findOneByBookstoreAdministrators_Id(id);
+	}
 }
