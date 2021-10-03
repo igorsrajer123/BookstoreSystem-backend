@@ -25,4 +25,22 @@ public class BookstoreService {
 	public Bookstore findOneByBookstoreAdministratorId(Long id) {
 		return bookstoreRepository.findOneByBookstoreAdministrators_Id(id);
 	}
+	
+	public Bookstore save(Bookstore bookstore) {
+		return bookstoreRepository.save(bookstore);
+	}
+	
+	public Bookstore updateBookstore(Bookstore bookstore) {
+		Bookstore myBookstore = bookstoreRepository.findOneById(bookstore.getId());
+		
+		if(myBookstore == null) return null;
+		
+		myBookstore.setName(bookstore.getName());
+		myBookstore.setAddress(bookstore.getAddress());
+		myBookstore.setCity(bookstore.getCity());
+		myBookstore.setContactPhone(bookstore.getContactPhone());
+		bookstoreRepository.save(myBookstore);
+		
+		return myBookstore;
+	}
 }

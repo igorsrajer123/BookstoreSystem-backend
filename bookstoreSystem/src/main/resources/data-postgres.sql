@@ -14,11 +14,11 @@ INSERT INTO user_entity(email, password, first_name, last_name, type, activated,
 --user password: 1234
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('sysadmin@gmail.com', '$2a$10$Ng8dAJzSDmWjbsuQmKb7WeOl27Kc5DlySVmClnvfqaD7VAZqFW7v6', 'Marko', 'Markovic', 'ROLE_SYSTEM_ADMIN', true, true, false, '+3816656213', '09/26/1994', 'Frankopanova 9', 'Novi Sad', 'sysAdmin.jpg');
 --user password: 12345
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('admin1@gmail.com', '$2a$10$gpHocgjdblYRnD.O/ri.qeeIoaLm8PZuQymydhgASYijPVM2q4tH2', 'Sima', 'Simonovic', 'ROLE_BOOKSTORE_ADMIN', true, true, true);
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('admin1@gmail.com', '$2a$10$gpHocgjdblYRnD.O/ri.qeeIoaLm8PZuQymydhgASYijPVM2q4tH2', 'Sima', 'Simonovic', 'ROLE_BOOKSTORE_ADMIN', true, true, true, '+3815523213', '02/02/1954', 'Simonoviceva 1', 'Sabac', 'sysAdmin.jpg');
 --user password: 54321
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('admin2@gmail.com', '$2a$10$qNyWkzQz63f1Q2xTqTu.Meopa.MMD9pVAie9isAhm9N6A3.xyQLoO', 'Samjuel', 'Hrubik', 'ROLE_BOOKSTORE_ADMIN', true, true, true);
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('admin2@gmail.com', '$2a$10$qNyWkzQz63f1Q2xTqTu.Meopa.MMD9pVAie9isAhm9N6A3.xyQLoO', 'Samjuel', 'Hrubik', 'ROLE_BOOKSTORE_ADMIN', true, true, true, '+3221332132', '02/12/1988', 'Guduriceva 2', 'Pancevo', 'sysAdmin.jpg');
 --user password: 55555
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login) VALUES ('seller@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Aleksandar', 'Paripovic', 'ROLE_SELLER', true, true, true);
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('seller@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Aleksandar', 'Paripovic', 'ROLE_SELLER', true, true, true, '+553213212', '12/02/1999', 'Gospodareva 52', 'Karadjordjevo', 'sysAdmin.jpg');
 
 --user authorities
 INSERT INTO user_authority(user_id, authority_id) VALUES (1, 1);
@@ -32,7 +32,7 @@ INSERT INTO customer(user_id, processed) VALUES (1, true);
 INSERT INTO bookstore_system_administrator(user_id) VALUES (2);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (3, 1);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (4, 2);
-INSERT INTO seller(user_id, bookstore_id) VALUES (5, 3);
+INSERT INTO seller(user_id, bookstore_id) VALUES (5, 2);
 
 --publishers
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Magnet', 'Dalmatinska 12', 'Beograd', '+3815435');

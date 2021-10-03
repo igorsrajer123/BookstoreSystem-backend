@@ -42,8 +42,7 @@ public class UserService {
 	public User updateUserInformation(User user) {
 		User myUser = userRepository.findOneById(user.getId());
 		
-		if(myUser == null)
-			return null;
+		if(myUser == null) return null;
 		
 		myUser.setFirstName(user.getFirstName());
 		myUser.setLastName(user.getLastName());
@@ -59,12 +58,33 @@ public class UserService {
 	public User changePassword(User user) {
 		User myUser = userRepository.findOneById(user.getId());
 		
-		if(myUser == null) 
-			return null;
+		if(myUser == null) return null;
 		
 		myUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		myUser.setLastPasswordResetDate(new Timestamp(timeProvider.now().getTime()));
 		myUser.setFirstLogin(false);
+		userRepository.save(myUser);
+		
+		return myUser;
+	}
+	
+	public User disableUserAccount(Long id) {
+		User myUser = userRepository.findOneById(id);
+		
+		if(myUser == null) return null;
+		
+		myUser.setEnabled(false);
+		userRepository.save(myUser);
+		
+		return myUser;
+	}
+	
+	public User enableUserAccount(Long id) {
+		User myUser = userRepository.findOneById(id);
+		
+		if(myUser == null) return null;
+		
+		myUser.setEnabled(true);
 		userRepository.save(myUser);
 		
 		return myUser;

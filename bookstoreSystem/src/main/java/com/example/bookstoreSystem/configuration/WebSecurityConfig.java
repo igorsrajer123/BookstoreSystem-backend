@@ -71,13 +71,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*", "/createBookstoreAdmin", "/createBookstoreSeller");
+		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
+													"/createBookstoreAdmin", "/createBookstoreSeller", "/uploadBookstoreImage/*");
+		
+		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",
 												"/getBooksByGenre/*", "/getAllBookstores", "/getBookstoreById/*", "/getAllBooks", "/getBookById/*", "/getBookByName/*", 
 												"/getBookByCode/*", "/getAllOtherProducts", "/getOtherProductById/*", "/getOtherProductByName/*", "/getOtherProductByCode/*",
 												"/getOtherProductsByType/*", "/restartPassword/*/*", "/getAllBookstoreAdmins", "/getAllSellers", "/getUserByEmail/*", 
-												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*");
+												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*", "/getAllBookstoreAdministrators/*", "/getAllBookstoreSellers/*");
 	}
 }

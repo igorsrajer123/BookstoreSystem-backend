@@ -66,4 +66,8 @@ public class BookstoreAdministratorService {
 		
 		return bookstoreAdministratorRepository.save(newAdmin);
 	}
+	
+	public List<BookstoreAdministrator> findAllByBookstoreId(Long id) {
+		return bookstoreAdministratorRepository.findAllByBookstoreId(id);
+	}
 }

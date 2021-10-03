@@ -66,4 +66,8 @@ public class SellerService {
 		
 		return sellerRepository.save(newSeller);
 	}
+	
+	public List<Seller> findAllByBookstoreId(Long id) {
+		return sellerRepository.findAllByBookstoreId(id);
+	}
 }

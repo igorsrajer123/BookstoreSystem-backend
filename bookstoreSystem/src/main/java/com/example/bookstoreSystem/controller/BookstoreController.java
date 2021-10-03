@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookstoreSystem.dto.BookstoreDto;
+import com.example.bookstoreSystem.model.Bookstore;
 import com.example.bookstoreSystem.service.BookstoreService;
 
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class BookstoreController {
 
@@ -42,5 +47,12 @@ public class BookstoreController {
 		if(bookstoreService.findOneByBookstoreAdministratorId(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<BookstoreDto>(new BookstoreDto(bookstoreService.findOneByBookstoreAdministratorId(id)), HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/updateBookstore", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookstoreDto> updateBookstore(@RequestBody Bookstore bookstore) {
+		if(bookstoreService.updateBookstore(bookstore) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookstoreDto>(new BookstoreDto(bookstoreService.updateBookstore(bookstore)), HttpStatus.OK);
 	}
 }

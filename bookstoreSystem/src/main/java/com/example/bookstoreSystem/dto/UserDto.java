@@ -17,16 +17,17 @@ public class UserDto {
 	private String profileImageName;
 	private String type;
 	private boolean firstLogin;
+	private boolean enabled;
 	
 	public UserDto() {
 		super();
 	}
 	
 	public UserDto(User u) {
-		this(u.getId(), u.getEmail(), u.getFirstName(), u.getLastName(), u.getAddress(), u.getCity(), u.getPhoneNumber(), u.getDateOfBirth(), u.getType(), u.getProfileImageName(), u.isFirstLogin());
+		this(u.getId(), u.getEmail(), u.getFirstName(), u.getLastName(), u.getAddress(), u.getCity(), u.getPhoneNumber(), u.getDateOfBirth(), u.getType(), u.getProfileImageName(), u.isFirstLogin(), u.isEnabled());
 	}
 	
-	public UserDto(Long id, String email, String firstName, String lastName, String address, String city, String phoneNumber, LocalDate dateOfBirth, String type, String profileImageName, boolean firstLogin) {
+	public UserDto(Long id, String email, String firstName, String lastName, String address, String city, String phoneNumber, LocalDate dateOfBirth, String type, String profileImageName, boolean firstLogin, boolean enabled) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -39,6 +40,7 @@ public class UserDto {
 		this.type = type;
 		this.profileImageName = profileImageName;
 		this.firstLogin = firstLogin;
+		this.setEnabled(enabled);
 	}
 	
 	public Long getId() {
@@ -127,5 +129,13 @@ public class UserDto {
 
 	public void setFirstLogin(boolean firstLogin) {
 		this.firstLogin = firstLogin;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

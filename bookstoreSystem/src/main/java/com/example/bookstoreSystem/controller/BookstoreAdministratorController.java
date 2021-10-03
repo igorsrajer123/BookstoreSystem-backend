@@ -48,4 +48,14 @@ public class BookstoreAdministratorController {
 		
 		return new ResponseEntity<BookstoreAdministratorDto>(new BookstoreAdministratorDto(bookstoreAdministratorService.findOneByUserId(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getAllBookstoreAdministrators/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<BookstoreAdministratorDto>> findAllBookstoreAdmins(@PathVariable("id") Long id) {
+		if(bookstoreAdministratorService.findAllByBookstoreId(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		List<BookstoreAdministratorDto> adminsDto = new ArrayList<BookstoreAdministratorDto>();
+		bookstoreAdministratorService.findAllByBookstoreId(id).forEach(admin -> adminsDto.add(new BookstoreAdministratorDto(admin)));
+		
+		return new ResponseEntity<List<BookstoreAdministratorDto>>(adminsDto, HttpStatus.OK);
+	}
 }

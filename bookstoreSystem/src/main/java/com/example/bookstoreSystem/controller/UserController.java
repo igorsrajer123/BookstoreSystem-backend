@@ -65,4 +65,18 @@ public class UserController {
 		
 		return new ResponseEntity<User>(userService.changePassword(user), HttpStatus.OK);
 	}
+	
+	@PutMapping(value = "/disableAccount/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserDto> disableAccount(@PathVariable("id") Long id) {
+		if(userService.disableUserAccount(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<UserDto>(new UserDto(userService.disableUserAccount(id)), HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/enableAccount/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserDto> enableAccount(@PathVariable("id") Long id) {
+		if(userService.enableUserAccount(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<UserDto>(new UserDto(userService.enableUserAccount(id)), HttpStatus.OK);
+	}
 }
