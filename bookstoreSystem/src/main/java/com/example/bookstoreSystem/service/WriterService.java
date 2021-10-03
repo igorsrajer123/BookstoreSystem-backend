@@ -29,4 +29,29 @@ public class WriterService {
 	public List<Writer> findAllByBookName(String name) {
 		return writerRepository.findAllByBooks_Name(name);
 	}
+	
+	public Writer save(Writer writer) {
+		return writerRepository.save(writer);
+	}
+	
+	public Writer updateWriter(Writer writer) {
+		Writer myWriter = writerRepository.findOneById(writer.getId());
+		
+		if(myWriter == null) return null;
+		
+		myWriter.setName(writer.getName());
+		myWriter.setDescription(writer.getDescription());
+		writerRepository.save(myWriter);
+		
+		return myWriter;
+	}
+	
+	public Writer createNew(Writer writer) {
+		Writer newWriter = new Writer();
+		newWriter.setName(writer.getName());
+		newWriter.setDescription(writer.getDescription());
+		writerRepository.save(newWriter);
+		
+		return newWriter;
+	}
 }

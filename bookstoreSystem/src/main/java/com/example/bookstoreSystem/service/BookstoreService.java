@@ -43,4 +43,17 @@ public class BookstoreService {
 		
 		return myBookstore;
 	}
+	
+	public Bookstore createNew(Bookstore bookstore) {
+		Bookstore newBookstore = new Bookstore();
+		newBookstore.setName(bookstore.getName());
+		newBookstore.setAddress(bookstore.getAddress());
+		newBookstore.setCity(bookstore.getCity());
+		newBookstore.setContactPhone(bookstore.getContactPhone());
+		newBookstore.setNumberOfVotes(0);
+		newBookstore.setRating(0.0);
+		bookstoreRepository.save(newBookstore);
+		
+		return newBookstore;
+	}
 }

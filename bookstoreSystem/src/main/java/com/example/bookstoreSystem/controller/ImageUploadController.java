@@ -17,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.bookstoreSystem.model.Bookstore;
 import com.example.bookstoreSystem.model.User;
+import com.example.bookstoreSystem.model.Writer;
 import com.example.bookstoreSystem.service.BookstoreService;
 import com.example.bookstoreSystem.service.UserService;
+import com.example.bookstoreSystem.service.WriterService;
 
 @RestController
 public class ImageUploadController {
@@ -30,6 +32,9 @@ public class ImageUploadController {
 	
 	@Autowired
 	private BookstoreService bookstoreService;
+	
+	@Autowired
+	private WriterService writerService;
 	
 	@PostMapping("/uploadProfileImage/{email}")
 	public ResponseEntity<?> uploadProfileImage(@PathVariable("email") String email, final @RequestParam("file") MultipartFile file) throws IOException {
@@ -73,4 +78,26 @@ public class ImageUploadController {
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/uploadWriterImage/{id}")
+	public ResponseEntity<?> uploadWriterImage(@PathVariable("id") Long id, final @RequestParam("file") MultipartFile file) throws IOException {
+		try {
+			String fileName = file.getOriginalFilename();
+			String filePath = Paths.get(uploadDirectory, fileName).toString();
+			
+			Writer myWriter = writerService.findOneById(id);
+			myWriter.setImage(fileName);
+			writerService.save(myWriter);
+
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+			stream.write(file.getBytes());
+		    stream.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
 }
