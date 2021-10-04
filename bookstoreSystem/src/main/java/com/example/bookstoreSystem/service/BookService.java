@@ -47,6 +47,10 @@ public class BookService {
 		return bookRepository.findAllByGenres_Name(name);
 	}
 	
+	public Book save(Book book) {
+		return bookRepository.save(book);
+	}
+	
 	public Book createNew(Book book) {
 		Book newBook = new Book();
 		newBook.setCode(book.getCode());
@@ -58,6 +62,7 @@ public class BookService {
 		newBook.setLanguage(book.getLanguage());
 		newBook.setCoverType(book.getCoverType());
 		newBook.setDescription(book.getDescription());
+		newBook.setGenres(book.getGenres());
 		bookRepository.save(newBook);
 		
 		return newBook;

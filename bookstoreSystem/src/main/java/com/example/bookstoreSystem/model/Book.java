@@ -26,7 +26,7 @@ public class Book extends Product{
 	@Column(name = "coverType", nullable = true)
 	private BookCoverType coverType;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "genreBooks", joinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "genreId", referencedColumnName = "id"))
 	private List<Genre> genres;
 	

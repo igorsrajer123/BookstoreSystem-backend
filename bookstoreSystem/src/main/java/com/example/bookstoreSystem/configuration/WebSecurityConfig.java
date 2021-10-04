@@ -73,9 +73,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
 													"/createBookstoreAdmin", "/createBookstoreSeller", "/uploadBookstoreImage/*", "/createNewBookstore", "/createNewWriter",
-													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct");
+													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct", "/uploadOtherProductImage/*", "/uploadBookImage/*");
 		
-		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/updateWriter");
+		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/updateWriter", "/addWriterNewBook/*");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",
@@ -83,6 +83,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/getBookByCode/*", "/getAllOtherProducts", "/getOtherProductById/*", "/getOtherProductByName/*", "/getOtherProductByCode/*",
 												"/getOtherProductsByType/*", "/restartPassword/*/*", "/getAllBookstoreAdmins", "/getAllSellers", "/getUserByEmail/*", 
 												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*", "/getAllBookstoreAdministrators/*", "/getAllBookstoreSellers/*",
-												"/getAllPublishers");
+												"/getAllPublishers", "/getOneWriterById/*");
 	}
 }

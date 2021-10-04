@@ -29,7 +29,7 @@ public class Writer {
 	@Column(name = "image", nullable = true)
 	private String image;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "writerBooks", joinColumns = @JoinColumn(name = "writerId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"))
 	private List<Book> books;
 	

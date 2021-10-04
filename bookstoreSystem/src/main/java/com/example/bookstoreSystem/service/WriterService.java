@@ -1,11 +1,14 @@
 package com.example.bookstoreSystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bookstoreSystem.model.Book;
 import com.example.bookstoreSystem.model.Writer;
+import com.example.bookstoreSystem.repository.BookRepository;
 import com.example.bookstoreSystem.repository.WriterRepository;
 
 @Service
@@ -13,6 +16,9 @@ public class WriterService {
 
 	@Autowired
 	private WriterRepository writerRepository;
+	
+	@Autowired
+	private BookRepository bookRepository;
 	
 	public List<Writer> findAll() {
 		return writerRepository.findAll();
@@ -53,5 +59,17 @@ public class WriterService {
 		writerRepository.save(newWriter);
 		
 		return newWriter;
+	}
+	
+	public void addWriterNewBook(String bookCode, List<Writer> writers) {
+		Book myBook = bookRepository.findOneByCode(bookCode);
+		
+		List<Writer> myWriters = new ArrayList<Writer>();
+		writers.forEach(w -> myWriters.add(writerRepository.findOneById(w.getId())));
+		
+		myWriters.forEach(w -> {
+			w.getBooks().add(myBook);
+			writerRepository.save(w);
+		});
 	}
 }

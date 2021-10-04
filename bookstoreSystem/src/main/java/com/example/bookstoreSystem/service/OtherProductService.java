@@ -43,6 +43,10 @@ public class OtherProductService {
 		return otherProductRepository.findAllByType(type);
 	}
 	
+	public OtherProduct save(OtherProduct otherProduct) {
+		return otherProductRepository.save(otherProduct);
+	}
+	
 	public OtherProduct createNew(OtherProduct otherProduct) {
 		OtherProduct newOtherProduct = new OtherProduct();
 		newOtherProduct.setCode(otherProduct.getCode());

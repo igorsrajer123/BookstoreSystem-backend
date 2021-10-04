@@ -36,6 +36,13 @@ public class WriterController {
 		return new ResponseEntity<List<WriterDto>>(writersDto, HttpStatus.OK);
 	}
 	
+	@GetMapping(value ="/getOneWriterById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<WriterDto> getOneWriterById(@PathVariable("id") Long id) {
+		if(writerService.findOneById(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<WriterDto>(new WriterDto(writerService.findOneById(id)), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/getBookWriters/{bookName}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<WriterDto>> getBookWriters(@PathVariable("bookName") String name) {
 		if(writerService.findAllByBookName(name) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,5 +63,11 @@ public class WriterController {
 		if(writerService.updateWriter(writer) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<WriterDto>(new WriterDto(writerService.updateWriter(writer)), HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/addWriterNewBook/{bookCode}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> addWriterNewBook(@PathVariable("bookCode") String code, @RequestBody List<Writer> writers) {
+		writerService.addWriterNewBook(code, writers);
+		return new ResponseEntity<>( HttpStatus.OK);
 	}
 }

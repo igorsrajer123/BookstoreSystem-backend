@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.bookstoreSystem.model.Book;
 import com.example.bookstoreSystem.model.Bookstore;
+import com.example.bookstoreSystem.model.OtherProduct;
 import com.example.bookstoreSystem.model.User;
 import com.example.bookstoreSystem.model.Writer;
+import com.example.bookstoreSystem.service.BookService;
 import com.example.bookstoreSystem.service.BookstoreService;
+import com.example.bookstoreSystem.service.OtherProductService;
 import com.example.bookstoreSystem.service.UserService;
 import com.example.bookstoreSystem.service.WriterService;
 
@@ -35,6 +39,12 @@ public class ImageUploadController {
 	
 	@Autowired
 	private WriterService writerService;
+	
+	@Autowired
+	private BookService bookService;
+	
+	@Autowired
+	private OtherProductService otherProductService;
 	
 	@PostMapping("/uploadProfileImage/{email}")
 	public ResponseEntity<?> uploadProfileImage(@PathVariable("email") String email, final @RequestParam("file") MultipartFile file) throws IOException {
@@ -100,4 +110,45 @@ public class ImageUploadController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/uploadBookImage/{id}")
+	public ResponseEntity<?> uploadBookImage(@PathVariable("id") Long id, final @RequestParam("file") MultipartFile file) throws IOException {
+		try {
+			String fileName = file.getOriginalFilename();
+			String filePath = Paths.get(uploadDirectory, fileName).toString();
+			
+			Book myBook = bookService.findOneById(id);
+			myBook.setCoverImage(fileName);
+			bookService.save(myBook);
+
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+			stream.write(file.getBytes());
+		    stream.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/uploadOtherProductImage/{id}")
+	public ResponseEntity<?> uploadOtherProductImage(@PathVariable("id") Long id, final @RequestParam("file") MultipartFile file) throws IOException {
+		try {
+			String fileName = file.getOriginalFilename();
+			String filePath = Paths.get(uploadDirectory, fileName).toString();
+			
+			OtherProduct myOtherProduct = otherProductService.findOneById(id);
+			myOtherProduct.setCoverImage(fileName);
+			otherProductService.save(myOtherProduct);
+
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+			stream.write(file.getBytes());
+		    stream.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
 }
