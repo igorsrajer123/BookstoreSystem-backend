@@ -9,9 +9,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookstoreSystem.dto.OtherProductDto;
+import com.example.bookstoreSystem.model.OtherProduct;
 import com.example.bookstoreSystem.model.ProductType;
 import com.example.bookstoreSystem.service.OtherProductService;
 
@@ -60,5 +63,10 @@ public class OtherProductController {
 		otherProductService.findAllByType(type).forEach(otherProduct -> otherProductsDto.add(new OtherProductDto(otherProduct)));
 		
 		return new ResponseEntity<List<OtherProductDto>>(otherProductsDto, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/createNewOtherProduct", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OtherProduct> createNewOtherProduct(@RequestBody OtherProduct otherProduct) {
+		return new ResponseEntity<OtherProduct>(otherProductService.createNew(otherProduct), HttpStatus.CREATED);
 	}
 }

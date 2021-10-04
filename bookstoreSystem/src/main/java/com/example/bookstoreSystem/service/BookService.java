@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.example.bookstoreSystem.model.Book;
 import com.example.bookstoreSystem.model.BookLanguage;
 import com.example.bookstoreSystem.repository.BookRepository;
+import com.example.bookstoreSystem.repository.PublisherRepository;
 
 @Service
 public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private PublisherRepository publisherRepository;
 	
 	public List<Book> findAll() {
 		return bookRepository.findAll();
@@ -41,5 +45,21 @@ public class BookService {
 	
 	public List<Book> findAllByGenreName(String name) {
 		return bookRepository.findAllByGenres_Name(name);
+	}
+	
+	public Book createNew(Book book) {
+		Book newBook = new Book();
+		newBook.setCode(book.getCode());
+		newBook.setName(book.getName());
+		newBook.setNumberOfPages(book.getNumberOfPages());
+		newBook.setPrice(book.getPrice());
+		newBook.setPublished(book.getPublished());
+		newBook.setPublisher(publisherRepository.findOneById(book.getPublisher().getId()));
+		newBook.setLanguage(book.getLanguage());
+		newBook.setCoverType(book.getCoverType());
+		newBook.setDescription(book.getDescription());
+		bookRepository.save(newBook);
+		
+		return newBook;
 	}
 }

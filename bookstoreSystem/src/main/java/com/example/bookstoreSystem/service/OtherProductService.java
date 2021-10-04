@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.example.bookstoreSystem.model.OtherProduct;
 import com.example.bookstoreSystem.model.ProductType;
 import com.example.bookstoreSystem.repository.OtherProductRepository;
+import com.example.bookstoreSystem.repository.PublisherRepository;
 
 @Service
 public class OtherProductService {
 
 	@Autowired
 	private OtherProductRepository otherProductRepository;
+	
+	@Autowired
+	private PublisherRepository publisherRepository;
 	
 	public List<OtherProduct> findAll() {
 		return otherProductRepository.findAll();
@@ -37,5 +41,20 @@ public class OtherProductService {
 	
 	public List<OtherProduct> findAllByType(ProductType type) {
 		return otherProductRepository.findAllByType(type);
+	}
+	
+	public OtherProduct createNew(OtherProduct otherProduct) {
+		OtherProduct newOtherProduct = new OtherProduct();
+		newOtherProduct.setCode(otherProduct.getCode());
+		newOtherProduct.setName(otherProduct.getName());
+		newOtherProduct.setPrice(otherProduct.getPrice());
+		newOtherProduct.setPublished(otherProduct.getPublished());
+		newOtherProduct.setPublisher(publisherRepository.findOneById(otherProduct.getPublisher().getId()));
+		newOtherProduct.setDescription(otherProduct.getDescription());
+		newOtherProduct.setExpirationDate(otherProduct.getExpirationDate());
+		newOtherProduct.setType(otherProduct.getType());
+		otherProductRepository.save(newOtherProduct);
+		
+		return newOtherProduct;
 	}
 }

@@ -73,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
 													"/createBookstoreAdmin", "/createBookstoreSeller", "/uploadBookstoreImage/*", "/createNewBookstore", "/createNewWriter",
-													"/uploadWriterImage/*");
+													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct");
 		
 		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/updateWriter");
 		
@@ -82,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/getBooksByGenre/*", "/getAllBookstores", "/getBookstoreById/*", "/getAllBooks", "/getBookById/*", "/getBookByName/*", 
 												"/getBookByCode/*", "/getAllOtherProducts", "/getOtherProductById/*", "/getOtherProductByName/*", "/getOtherProductByCode/*",
 												"/getOtherProductsByType/*", "/restartPassword/*/*", "/getAllBookstoreAdmins", "/getAllSellers", "/getUserByEmail/*", 
-												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*", "/getAllBookstoreAdministrators/*", "/getAllBookstoreSellers/*");
+												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*", "/getAllBookstoreAdministrators/*", "/getAllBookstoreSellers/*",
+												"/getAllPublishers");
 	}
 }

@@ -22,6 +22,10 @@ public class Book extends Product{
 	@Column(name = "language", nullable = true)
 	private BookLanguage language;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "coverType", nullable = true)
+	private BookCoverType coverType;
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "genreBooks", joinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "genreId", referencedColumnName = "id"))
 	private List<Genre> genres;
@@ -52,5 +56,13 @@ public class Book extends Product{
 
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
+	}
+
+	public BookCoverType getCoverType() {
+		return coverType;
+	}
+
+	public void setCoverType(BookCoverType coverType) {
+		this.coverType = coverType;
 	}
 }

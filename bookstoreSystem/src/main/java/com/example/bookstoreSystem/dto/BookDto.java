@@ -3,6 +3,7 @@ package com.example.bookstoreSystem.dto;
 import java.time.LocalDate;
 
 import com.example.bookstoreSystem.model.Book;
+import com.example.bookstoreSystem.model.BookCoverType;
 import com.example.bookstoreSystem.model.BookLanguage;
 
 public class BookDto {
@@ -17,16 +18,17 @@ public class BookDto {
 	private PublisherDto publisher;
 	private int numberOfPages;
 	private BookLanguage language;
+	private BookCoverType coverType;
 	
 	public BookDto() {
 		super();
 	}
 	
 	public BookDto(Book b) {
-		this(b.getId(), b.getName(), b.getCode(), b.getDescription(), b.getPrice(), b.getPublished(), b.getCoverImage(), new PublisherDto(b.getPublisher()), b.getNumberOfPages(), b.getLanguage());
+		this(b.getId(), b.getName(), b.getCode(), b.getDescription(), b.getPrice(), b.getPublished(), b.getCoverImage(), new PublisherDto(b.getPublisher()), b.getNumberOfPages(), b.getLanguage(), b.getCoverType());
 	}
 	
-	public BookDto(Long id, String name, String code, String description, double price, LocalDate published, String coverImage, PublisherDto publisher, int numberOfPages, BookLanguage language) {
+	public BookDto(Long id, String name, String code, String description, double price, LocalDate published, String coverImage, PublisherDto publisher, int numberOfPages, BookLanguage language, BookCoverType coverType) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,6 +40,7 @@ public class BookDto {
 		this.publisher = publisher;
 		this.numberOfPages = numberOfPages;
 		this.language = language;
+		this.coverType = coverType;
 	}
 
 	public int getNumberOfPages() {
@@ -118,5 +121,13 @@ public class BookDto {
 
 	public void setPublisher(PublisherDto publisher) {
 		this.publisher = publisher;
+	}
+
+	public BookCoverType getCoverType() {
+		return coverType;
+	}
+
+	public void setCoverType(BookCoverType coverType) {
+		this.coverType = coverType;
 	}
 }

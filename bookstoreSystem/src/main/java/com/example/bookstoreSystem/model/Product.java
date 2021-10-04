@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -20,7 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public abstract class Product {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "some_seq", sequenceName = "seq_name_in_db",  allocationSize = 1, initialValue = 40)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "some_seq")
 	protected Long id;
 	
 	@Column(name = "code", nullable = false, unique = true)
