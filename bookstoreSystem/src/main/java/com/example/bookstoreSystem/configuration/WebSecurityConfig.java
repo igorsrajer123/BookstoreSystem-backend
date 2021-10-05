@@ -76,7 +76,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct", "/uploadOtherProductImage/*", "/uploadBookImage/*",
 													"/createNewGenre", "/createNewPublisher");
 		
-		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/updateWriter", "/addWriterNewBook/*", "/editGenre", "/editPublisher");
+		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/updateWriter", "/addWriterNewBook/*", "/editGenre",
+												"/editPublisher", "/updateBook", "/updateOtherProduct");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",

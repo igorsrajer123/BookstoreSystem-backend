@@ -67,4 +67,22 @@ public class BookService {
 		
 		return newBook;
 	}
+	
+	public Book updateBook(Book book) {
+		Book myBook = bookRepository.findOneById(book.getId());
+		
+		if(myBook == null) return null;
+		
+		myBook.setName(book.getName());
+		myBook.setDescription(book.getDescription());
+		myBook.setPrice(book.getPrice());
+		myBook.setLanguage(book.getLanguage());
+		myBook.setNumberOfPages(book.getNumberOfPages());
+		myBook.setPublished(book.getPublished());
+		myBook.setPublisher(publisherRepository.findOneById(book.getPublisher().getId()));
+		myBook.setCoverType(book.getCoverType());
+		bookRepository.save(myBook);
+		
+		return myBook;
+	}
 }

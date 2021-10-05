@@ -61,4 +61,19 @@ public class OtherProductService {
 		
 		return newOtherProduct;
 	}
+	
+	public OtherProduct updateOtherProduct(OtherProduct otherProduct) {
+		OtherProduct myOtherProduct = otherProductRepository.findOneById(otherProduct.getId());
+		
+		if(myOtherProduct == null) return null;
+		
+		myOtherProduct.setName(otherProduct.getName());
+		myOtherProduct.setDescription(otherProduct.getDescription());
+		myOtherProduct.setPrice(otherProduct.getPrice());
+		myOtherProduct.setPublished(otherProduct.getPublished());
+		myOtherProduct.setPublisher(publisherRepository.findOneById(otherProduct.getPublisher().getId()));
+		otherProductRepository.save(myOtherProduct);
+		
+		return myOtherProduct; 
+	}
 }

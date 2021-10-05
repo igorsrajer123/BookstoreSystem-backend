@@ -115,7 +115,7 @@ INSERT INTO genre(name) VALUES ('Dystopian Fiction');
 INSERT INTO genre(name) VALUES ('Novel');
 
 --books
-INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (1, '115521', 'Game of Thrones', 1555, 'descrption1234', '2020-05-01', 1, 400, 'SERBIAN', 'gameOfThrones.jpg', 'PAPERBACK');
+INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (1, '115521', 'Game of Thrones', 1555, 'descrption1234', '2020-05-01', 1, 400, 'ENGLISH', 'gameOfThrones.jpg', 'PAPERBACK');
 INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (2, '5551231', 'Lord of the Rings: Two Towers', 1500, 'description2222', '2020-05-01', 2, 420, 'SERBIAN', 'twoTowers.jpg', 'PAPERBACK');
 INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (3, '332515', 'Lord of the Rings: Fellowship of the Ring', 1200, 'descrption3333', '2020-05-01', 2, 510, 'SERBIAN', 'fellowshipOfTheRing.jpg', 'PAPERBACK');
 INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (4, '6532', 'Lord of the Rings: Return of the King', 1200, 'descrption4444', '2020-05-01', 2, 390, 'SERBIAN', 'returnOfTheKing.jpg', 'PAPERBACK');

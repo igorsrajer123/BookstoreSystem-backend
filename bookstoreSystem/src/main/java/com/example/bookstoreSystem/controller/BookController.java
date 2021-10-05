@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,5 +70,12 @@ public class BookController {
 	@PostMapping(value = "/createNewBook",  produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Book> createNewBook(@RequestBody Book book) {
 		return new ResponseEntity<Book>(bookService.createNew(book), HttpStatus.CREATED);
+	}
+	
+	@PutMapping(value = "/updateBook", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+		if(bookService.updateBook(book) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<Book>(bookService.updateBook(book), HttpStatus.OK);
 	}
 }
