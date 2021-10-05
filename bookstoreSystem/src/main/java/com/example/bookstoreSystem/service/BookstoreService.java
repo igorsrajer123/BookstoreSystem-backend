@@ -26,6 +26,10 @@ public class BookstoreService {
 		return bookstoreRepository.findOneByBookstoreAdministrators_Id(id);
 	}
 	
+	public Bookstore findOneBySellerId(Long id) {
+		return bookstoreRepository.findOneByBookstoreSellers_Id(id);
+	}
+	
 	public Bookstore save(Bookstore bookstore) {
 		return bookstoreRepository.save(bookstore);
 	}

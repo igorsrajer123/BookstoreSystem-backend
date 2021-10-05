@@ -62,8 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/", "/*.html", "/favicon.ico","/*.js", "/*.css").permitAll()
 		.anyRequest().authenticated().and()
 		.cors().and()
-		.addFilterBefore(new TokenAuthenticationFilter(tokenUtils, loginService),
-				BasicAuthenticationFilter.class);
+		.addFilterBefore(new TokenAuthenticationFilter(tokenUtils, loginService), BasicAuthenticationFilter.class);
 
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
@@ -72,12 +71,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
-													"/createBookstoreAdmin", "/createBookstoreSeller", "/uploadBookstoreImage/*", "/createNewBookstore", "/createNewWriter",
+													"/createBookstoreAdmin", "/uploadBookstoreImage/*", "/createNewWriter", "/createNewBookstore",
 													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct", "/uploadOtherProductImage/*", "/uploadBookImage/*",
-													"/createNewGenre", "/createNewPublisher");
+													"/createNewPublisher", "/createBookstoreSeller");
 		
-		web.ignoring().antMatchers(HttpMethod.PUT, "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/updateWriter", "/addWriterNewBook/*", "/editGenre",
-												"/editPublisher", "/updateBook", "/updateOtherProduct");
+		web.ignoring().antMatchers(HttpMethod.PUT, "/updateWriter", "/addWriterNewBook/*", "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/editPublisher",
+												"/updateBook", "/updateOtherProduct");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",
@@ -85,6 +84,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/getBookByCode/*", "/getAllOtherProducts", "/getOtherProductById/*", "/getOtherProductByName/*", "/getOtherProductByCode/*",
 												"/getOtherProductsByType/*", "/restartPassword/*/*", "/getAllBookstoreAdmins", "/getAllSellers", "/getUserByEmail/*", 
 												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*", "/getAllBookstoreAdministrators/*", "/getAllBookstoreSellers/*",
-												"/getAllPublishers", "/getOneWriterById/*");
+												"/getAllPublishers", "/getOneWriterById/*", "/getBookstoreBySellerId/*", "/getSellerByUserId/*");
 	}
 }

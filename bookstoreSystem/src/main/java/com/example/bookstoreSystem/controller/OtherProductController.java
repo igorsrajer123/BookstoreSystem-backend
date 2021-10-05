@@ -69,14 +69,14 @@ public class OtherProductController {
 	}
 	
 	@PostMapping(value = "/createNewOtherProduct", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<OtherProduct> createNewOtherProduct(@RequestBody OtherProduct otherProduct) {
-		return new ResponseEntity<OtherProduct>(otherProductService.createNew(otherProduct), HttpStatus.CREATED);
+	public ResponseEntity<OtherProductDto> createNewOtherProduct(@RequestBody OtherProduct otherProduct) {
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.createNew(otherProduct)), HttpStatus.CREATED);
 	}
 	
 	@PutMapping(value = "/updateOtherProduct", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<OtherProduct> updateOtherProduct(@RequestBody  OtherProduct otherProduct) {
+	public ResponseEntity<OtherProductDto> updateOtherProduct(@RequestBody  OtherProduct otherProduct) {
 		if(otherProductService.updateOtherProduct(otherProduct) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<OtherProduct>(otherProductService.updateOtherProduct(otherProduct), HttpStatus.OK);
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.updateOtherProduct(otherProduct)), HttpStatus.OK);
 	}
 }

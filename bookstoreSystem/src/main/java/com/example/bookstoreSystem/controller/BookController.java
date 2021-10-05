@@ -68,14 +68,14 @@ public class BookController {
 	}
 	
 	@PostMapping(value = "/createNewBook",  produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Book> createNewBook(@RequestBody Book book) {
-		return new ResponseEntity<Book>(bookService.createNew(book), HttpStatus.CREATED);
+	public ResponseEntity<BookDto> createNewBook(@RequestBody Book book) {
+		return new ResponseEntity<BookDto>(new BookDto(bookService.createNew(book)), HttpStatus.CREATED);
 	}
 	
 	@PutMapping(value = "/updateBook", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+	public ResponseEntity<BookDto> updateBook(@RequestBody Book book) {
 		if(bookService.updateBook(book) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<Book>(bookService.updateBook(book), HttpStatus.OK);
+		return new ResponseEntity<BookDto>(new BookDto(bookService.updateBook(book)), HttpStatus.OK);
 	}
 }

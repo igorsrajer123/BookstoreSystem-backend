@@ -61,4 +61,11 @@ public class BookstoreController {
 	public ResponseEntity<BookstoreDto> createNewBookstore(@RequestBody Bookstore bookstore) {
 		return new ResponseEntity<BookstoreDto>(new BookstoreDto(bookstoreService.createNew(bookstore)), HttpStatus.CREATED);
 	}
+	
+	@GetMapping(value = "/getBookstoreBySellerId/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookstoreDto> getBookstoreBySellerId(@PathVariable("id") Long id) {
+		if(bookstoreService.findOneBySellerId(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookstoreDto>(new BookstoreDto(bookstoreService.findOneBySellerId(id)), HttpStatus.OK);
+	}
 }
