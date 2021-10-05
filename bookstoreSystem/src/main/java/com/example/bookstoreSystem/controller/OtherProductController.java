@@ -79,4 +79,9 @@ public class OtherProductController {
 		
 		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.updateOtherProduct(otherProduct)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getOtherProductByOtherProductsBookstoresId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OtherProductDto> findOtherProductByOtherProductsBookstoresId(@PathVariable("id") Long id) {
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByOtherProductsBookstoresId(id)), HttpStatus.OK);
+	}
 }

@@ -76,4 +76,8 @@ public class OtherProductService {
 		
 		return myOtherProduct; 
 	}
+	
+	public OtherProduct findOneByOtherProductsBookstoresId(Long id) {
+		return otherProductRepository.findOneByOtherProductsInBookstores_Id(id);
+	}
 }

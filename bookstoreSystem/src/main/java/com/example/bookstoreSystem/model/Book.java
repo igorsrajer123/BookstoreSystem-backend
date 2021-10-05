@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Book extends Product{
@@ -29,6 +31,10 @@ public class Book extends Product{
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "genreBooks", joinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "genreId", referencedColumnName = "id"))
 	private List<Genre> genres;
+	
+	@JsonManagedReference(value = "bookBookstores-movement")
+	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<BooksBookstores> booksInBookstores;
 	
 	public Book() {
 		super();
@@ -64,5 +70,13 @@ public class Book extends Product{
 
 	public void setCoverType(BookCoverType coverType) {
 		this.coverType = coverType;
+	}
+
+	public List<BooksBookstores> getBooksInBookstores() {
+		return booksInBookstores;
+	}
+
+	public void setBooksInBookstores(List<BooksBookstores> booksInBookstores) {
+		this.booksInBookstores = booksInBookstores;
 	}
 }

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Bookstore {
@@ -48,6 +49,14 @@ public class Bookstore {
 	@JsonIgnoreProperties(value = {"bookstore"}, allowSetters = true)
 	@OneToMany(mappedBy = "bookstore", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Seller> bookstoreSellers;
+	
+	@JsonManagedReference(value = "bookstoreBooks-movement")
+	@OneToMany(mappedBy = "bookstore", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<BooksBookstores> booksInBookstores;
+	
+	@JsonManagedReference(value = "bookstoreOtherProducts-movement")
+	@OneToMany(mappedBy = "bookstore", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<OtherProductsBookstores> otherProductsInBookstores;
 	
 	public Bookstore() {
 		super();
@@ -131,5 +140,21 @@ public class Bookstore {
 
 	public void setBookstoreSellers(List<Seller> bookstoreSellers) {
 		this.bookstoreSellers = bookstoreSellers;
+	}
+
+	public List<BooksBookstores> getBooksInBookstores() {
+		return booksInBookstores;
+	}
+
+	public void setBooksInBookstores(List<BooksBookstores> booksInBookstores) {
+		this.booksInBookstores = booksInBookstores;
+	}
+
+	public List<OtherProductsBookstores> getOtherProductsInBookstores() {
+		return otherProductsInBookstores;
+	}
+
+	public void setOtherProductsInBookstores(List<OtherProductsBookstores> otherProductsInBookstores) {
+		this.otherProductsInBookstores = otherProductsInBookstores;
 	}
 }

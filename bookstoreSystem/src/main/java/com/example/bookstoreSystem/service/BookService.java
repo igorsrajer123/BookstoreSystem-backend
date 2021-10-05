@@ -85,4 +85,8 @@ public class BookService {
 		
 		return myBook;
 	}
+	
+	public Book findOneByBooksInBookstoreId(Long id) {
+		return bookRepository.findOneByBooksInBookstores_Id(id);
+	}
 }

@@ -7,14 +7,13 @@ INSERT INTO authority(name) VALUES ('ROLE_SELLER');
 --bookstores
 INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Frankopanova 31', 'Novi Sad', 'Agora', 0, 0, '+3819922352', 'bookstore1.webp');
 INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Mileticeva 11', 'Zrenjanin', 'Epitaf', 0, 0, '+3816677532', 'bookstore2.jpg');
-INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Apatinska 19', 'Beograd', 'Soma', 0, 0, '+3815604435', 'bookstore3.jpg');
 
 --user password: 123
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city) VALUES ('isapsw1234@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', true, true, false, '+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd');
 --user password: 1234
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('sysadmin@gmail.com', '$2a$10$Ng8dAJzSDmWjbsuQmKb7WeOl27Kc5DlySVmClnvfqaD7VAZqFW7v6', 'Marko', 'Markovic', 'ROLE_SYSTEM_ADMIN', true, true, false, '+3816656213', '09/26/1994', 'Frankopanova 9', 'Novi Sad', 'sysAdmin.jpg');
 --user password: 12345
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('admin1@gmail.com', '$2a$10$gpHocgjdblYRnD.O/ri.qeeIoaLm8PZuQymydhgASYijPVM2q4tH2', 'Sima', 'Simonovic', 'ROLE_BOOKSTORE_ADMIN', true, true, true, '+3815523213', '02/02/1954', 'Simonoviceva 1', 'Sabac', 'sysAdmin.jpg');
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('admin1@gmail.com', '$2a$10$gpHocgjdblYRnD.O/ri.qeeIoaLm8PZuQymydhgASYijPVM2q4tH2', 'Sima', 'Simonovic', 'ROLE_BOOKSTORE_ADMIN', true, true, false, '+3815523213', '02/02/1954', 'Simonoviceva 1', 'Sabac', 'sysAdmin.jpg');
 --user password: 54321
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('admin2@gmail.com', '$2a$10$qNyWkzQz63f1Q2xTqTu.Meopa.MMD9pVAie9isAhm9N6A3.xyQLoO', 'Samjuel', 'Hrubik', 'ROLE_BOOKSTORE_ADMIN', true, true, true, '+3221332132', '02/12/1988', 'Guduriceva 2', 'Pancevo', 'sysAdmin.jpg');
 --user password: 55555
@@ -270,3 +269,84 @@ INSERT INTO writer_books(writer_id, book_id) VALUES (9, 34);
 INSERT INTO writer_books(writer_id, book_id) VALUES (9, 35);
 INSERT INTO writer_books(writer_id, book_id) VALUES (9, 36);
 INSERT INTO writer_books(writer_id, book_id) VALUES (9, 37);
+
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (23, 1, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (15, 2, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (40, 3, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (39, 4, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 5, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 6, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 7, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (25, 8, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (41, 9, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (43, 10, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 11, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (13, 12, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (1, 13, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (22, 14, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (25, 15, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (31, 16, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (19, 17, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (20, 18, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (15, 19, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (17, 20, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (15, 21, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (23, 22, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (25, 23, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (12, 24, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 25, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 26, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 27, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (0, 28, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (25, 29, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (24, 30, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (15, 31, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (6, 32, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 33, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 34, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (23, 35, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (11, 36, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (10, 37, 1);
+
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 1, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 2, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 3, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (27, 4, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (12, 5, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 6, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 7, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 8, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 9, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 10, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (27, 11, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (12, 12, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 13, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 14, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 15, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 16, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 17, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (27, 18, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (12, 19, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 20, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 21, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 22, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 23, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 24, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (27, 25, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (12, 26, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 27, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 28, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 29, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 30, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 31, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (27, 32, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (12, 33, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (3, 34, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (7, 35, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 36, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 37, 2);
+
+INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (5, 38, 1);
+INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (6, 38, 2);
+INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (12, 39, 1);
+INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (14, 39, 2);
