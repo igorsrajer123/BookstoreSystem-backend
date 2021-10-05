@@ -69,4 +69,32 @@ public class EmailService {
 		javaMailSender.send(msg);
 		System.out.println("Email sent!");
 	}
+	
+	@Async
+	public void accountDisabledNotification() throws  MailException, InterruptedException { 
+		System.out.println("Mail is sending...");
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo("isapsw123@gmail.com");
+		msg.setFrom(environment.getProperty("spring.mail.username"));
+		msg.setSubject("Account Disabled :(");
+		msg.setText("We are sorry to inform you that your Bookstore++ user account has been disabled temporarily by our administrator. :(");
+	
+		javaMailSender.send(msg);
+		System.out.println("Email sent!");
+	}
+	
+	@Async
+	public void accountEnabledNotification() throws  MailException, InterruptedException { 
+		System.out.println("Mail is sending...");
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo("isapsw123@gmail.com");
+		msg.setFrom(environment.getProperty("spring.mail.username"));
+		msg.setSubject("Account Enabled :)");
+		msg.setText("We inform you that your Bookstore++ user account has been enabled by our administrator. :)");
+	
+		javaMailSender.send(msg);
+		System.out.println("Email sent!");
+	}
 }

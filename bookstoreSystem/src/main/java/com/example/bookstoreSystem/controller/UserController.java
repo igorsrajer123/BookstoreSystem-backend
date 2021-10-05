@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookstoreSystem.dto.UserDto;
 import com.example.bookstoreSystem.model.User;
+import com.example.bookstoreSystem.service.EmailService;
 import com.example.bookstoreSystem.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -25,6 +27,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping(value = "/getAllUsers", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UserDto>> getAllUsers() {
@@ -70,12 +75,28 @@ public class UserController {
 	public ResponseEntity<UserDto> disableAccount(@PathVariable("id") Long id) {
 		if(userService.disableUserAccount(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
+		try {
+			emailService.accountDisabledNotification();
+		} catch (MailException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		return new ResponseEntity<UserDto>(new UserDto(userService.disableUserAccount(id)), HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/enableAccount/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserDto> enableAccount(@PathVariable("id") Long id) {
 		if(userService.enableUserAccount(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		try {
+			emailService.accountEnabledNotification();
+		} catch (MailException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		return new ResponseEntity<UserDto>(new UserDto(userService.enableUserAccount(id)), HttpStatus.OK);
 	}
