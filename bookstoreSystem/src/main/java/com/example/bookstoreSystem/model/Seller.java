@@ -1,5 +1,7 @@
 package com.example.bookstoreSystem.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,6 +29,10 @@ public class Seller {
 	@JsonIgnoreProperties("bookstoreSellers")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Bookstore bookstore;
+	
+	@JsonIgnoreProperties(value = {"seller"}, allowSetters = true)
+	@OneToMany(mappedBy = "seller", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Receipt> createdReceipts;
 	
 	public Seller() {
 		super();
@@ -53,5 +60,13 @@ public class Seller {
 
 	public void setBookstore(Bookstore bookstore) {
 		this.bookstore = bookstore;
+	}
+
+	public List<Receipt> getCreatedReceipts() {
+		return createdReceipts;
+	}
+
+	public void setCreatedReceipts(List<Receipt> createdReceipts) {
+		this.createdReceipts = createdReceipts;
 	}
 }

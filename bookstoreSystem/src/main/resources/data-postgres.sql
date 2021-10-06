@@ -4,9 +4,13 @@ INSERT INTO authority(name) VALUES ('ROLE_SYSTEM_ADMIN');
 INSERT INTO authority(name) VALUES ('ROLE_BOOKSTORE_ADMIN');
 INSERT INTO authority(name) VALUES ('ROLE_SELLER');
 
+--bookstore's cash registers
+INSERT INTO cash_register(code) VALUES ('1001');
+INSERT INTO cash_register(code) VALUES ('1002');
+
 --bookstores
-INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Frankopanova 31', 'Novi Sad', 'Agora', 0, 0, '+3819922352', 'bookstore1.webp');
-INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo) VALUES ('Mileticeva 11', 'Zrenjanin', 'Epitaf', 0, 0, '+3816677532', 'bookstore2.jpg');
+INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo, cash_register_id) VALUES ('Frankopanova 31', 'Novi Sad', 'Agora', 0, 0, '+3819922352', 'bookstore1.webp', 1);
+INSERT INTO bookstore(address, city, name, number_of_votes, rating, contact_phone, photo, cash_register_id) VALUES ('Mileticeva 11', 'Zrenjanin', 'Epitaf', 0, 0, '+3816677532', 'bookstore2.jpg', 2);
 
 --user password: 123
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city) VALUES ('isapsw1234@gmail.com', '$2a$10$M3.YOtEuBCSNbgzJ3hkQv.ZgOMGNSTataYMx1UU7OnqMrlC6Osgzm', 'Misa', 'Dimitrijevic', 'ROLE_CUSTOMER', true, true, false, '+381692312321', '1995-03-05', 'Tomiceva 55', 'Beograd');
@@ -17,7 +21,9 @@ INSERT INTO user_entity(email, password, first_name, last_name, type, activated,
 --user password: 54321
 INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('admin2@gmail.com', '$2a$10$qNyWkzQz63f1Q2xTqTu.Meopa.MMD9pVAie9isAhm9N6A3.xyQLoO', 'Samjuel', 'Hrubik', 'ROLE_BOOKSTORE_ADMIN', true, true, true, '+3221332132', '02/12/1988', 'Guduriceva 2', 'Pancevo', 'sysAdmin.jpg');
 --user password: 55555
-INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('seller@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Aleksandar', 'Paripovic', 'ROLE_SELLER', true, true, true, '+553213212', '12/02/1999', 'Gospodareva 52', 'Karadjordjevo', 'sysAdmin.jpg');
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('seller@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Aleksandar', 'Paripovic', 'ROLE_SELLER', true, true, false, '+553213212', '12/02/1999', 'Gospodareva 52', 'Karadjordjevo', 'sysAdmin.jpg');
+--user password: 55555
+INSERT INTO user_entity(email, password, first_name, last_name, type, activated, enabled, first_login, phone_number, date_of_birth, address, city, profile_image_name) VALUES ('seller2@gmail.com', '$2a$10$665GOyAQmwqTkz/6HmxikOgLD1kVNnP6Yx7T1zXFECcC/kgAOh7JG', 'Mitar', 'Miric', 'ROLE_SELLER', true, true, false, '+1234567', '12/02/1992', 'Mrkonjiceva 11', 'Cestereg', 'sysAdmin.jpg');
 
 --user authorities
 INSERT INTO user_authority(user_id, authority_id) VALUES (1, 1);
@@ -25,13 +31,15 @@ INSERT INTO user_authority(user_id, authority_id) VALUES (2, 2);
 INSERT INTO user_authority(user_id, authority_id) VALUES (3, 3);
 INSERT INTO user_authority(user_id, authority_id) VALUES (4, 3);
 INSERT INTO user_authority(user_id, authority_id) VALUES (5, 4);
+INSERT INTO user_authority(user_id, authority_id) VALUES (6, 4);
 
 --different users
 INSERT INTO customer(user_id, processed) VALUES (1, true);
 INSERT INTO bookstore_system_administrator(user_id) VALUES (2);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (3, 1);
 INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (4, 2);
-INSERT INTO seller(user_id, bookstore_id) VALUES (5, 2);
+INSERT INTO seller(user_id, bookstore_id) VALUES (5, 1);
+INSERT INTO seller(user_id, bookstore_id) VALUES (6, 2);
 
 --publishers
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Magnet', 'Dalmatinska 12', 'Beograd', '+3815435');
@@ -351,3 +359,15 @@ INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VA
 INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (6, 38, 2);
 INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (12, 39, 1);
 INSERT INTO other_products_bookstores(amount, other_product_id, bookstore_id) VALUES (14, 39, 2);
+
+--receipts 
+INSERT INTO receipt(number, cash_register_id, seller_id, value, status, date_and_time) VALUES (5321, 1, 1, 3055, 'CREATED', '2021-05-05 16:43:00');
+INSERT INTO receipt(number, cash_register_id, seller_id, value, status, date_and_time) VALUES (5112, 1, 1, 2400, 'REVERSED', '2021-05-05 09:55:30');
+INSERT INTO receipt(number, cash_register_id, seller_id, value, status, date_and_time) VALUES (3321, 2, 2, 1500, 'CREATED', '2021-05-05 10:42:10');
+
+---receipt items
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (2, 1, 1, null);
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 1, 2, null);
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 2, 3, null);
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 2, 4, null);
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 3, 5, null);

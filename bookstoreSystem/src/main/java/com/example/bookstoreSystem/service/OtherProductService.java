@@ -5,9 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bookstoreSystem.model.Bookstore;
 import com.example.bookstoreSystem.model.OtherProduct;
+import com.example.bookstoreSystem.model.OtherProductsBookstores;
 import com.example.bookstoreSystem.model.ProductType;
+import com.example.bookstoreSystem.repository.BookstoreRepository;
 import com.example.bookstoreSystem.repository.OtherProductRepository;
+import com.example.bookstoreSystem.repository.OtherProductsBookstoresRepository;
 import com.example.bookstoreSystem.repository.PublisherRepository;
 
 @Service
@@ -18,6 +22,12 @@ public class OtherProductService {
 	
 	@Autowired
 	private PublisherRepository publisherRepository;
+	
+	@Autowired 
+	private OtherProductsBookstoresRepository otherProductsBookstoresRepository;
+	
+	@Autowired
+	private BookstoreRepository bookstoreRepository;
 	
 	public List<OtherProduct> findAll() {
 		return otherProductRepository.findAll();
@@ -59,6 +69,15 @@ public class OtherProductService {
 		newOtherProduct.setType(otherProduct.getType());
 		otherProductRepository.save(newOtherProduct);
 		
+		List<Bookstore> allBookstores = bookstoreRepository.findAll();
+		for(Bookstore b : allBookstores) {
+			OtherProductsBookstores newOtherProductBookstore = new OtherProductsBookstores();
+			newOtherProductBookstore.setAmount(0);
+			newOtherProductBookstore.setBookstore(b);
+			newOtherProductBookstore.setOtherProduct(newOtherProduct);
+			otherProductsBookstoresRepository.save(newOtherProductBookstore);
+		}
+		
 		return newOtherProduct;
 	}
 	
@@ -79,5 +98,9 @@ public class OtherProductService {
 	
 	public OtherProduct findOneByOtherProductsBookstoresId(Long id) {
 		return otherProductRepository.findOneByOtherProductsInBookstores_Id(id);
+	}
+	
+	public OtherProduct findOneByReceiptItemId(Long id) {
+		return otherProductRepository.findOneByOtherProductReceiptItems_Id(id);
 	}
 }

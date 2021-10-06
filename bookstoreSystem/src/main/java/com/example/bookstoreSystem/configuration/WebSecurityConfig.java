@@ -86,6 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/getBookstoreByAdminId/*", "/getBookstoreAdministratorByUserId/*", "/getAllBookstoreAdministrators/*", "/getAllBookstoreSellers/*",
 												"/getAllPublishers", "/getOneWriterById/*", "/getBookstoreBySellerId/*", "/getSellerByUserId/*", "/getAllBooksInBookstores",
 												"/getBooksInBookstore/*", "/getAllOtherProductsInBookstores", "/getOtherProductsInBookstore/*", "/getBookByBooksInBookstoreId/*",
-												"/getOtherProductByOtherProductsBookstoresId/*");
+												"/getOtherProductByOtherProductsBookstoresId/*", "/getAllCashRegisters", "/getCashRegisterByBookstoreId/*", "/getAllReceipts",
+												"/getCashRegistersReceipts/*", "/getReceiptItems/*", "/getAllReceiptItems", "/getBookFromReceiptItem/*", "/getOtherProductByReceiptItem/*");
 	}
 }

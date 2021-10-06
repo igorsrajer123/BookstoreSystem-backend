@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -57,6 +58,10 @@ public class Bookstore {
 	@JsonManagedReference(value = "bookstoreOtherProducts-movement")
 	@OneToMany(mappedBy = "bookstore", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<OtherProductsBookstores> otherProductsInBookstores;
+	
+	@JsonManagedReference(value = "cashRegister-movement")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private CashRegister cashRegister;
 	
 	public Bookstore() {
 		super();
@@ -156,5 +161,13 @@ public class Bookstore {
 
 	public void setOtherProductsInBookstores(List<OtherProductsBookstores> otherProductsInBookstores) {
 		this.otherProductsInBookstores = otherProductsInBookstores;
+	}
+
+	public CashRegister getCashRegister() {
+		return cashRegister;
+	}
+
+	public void setCashRegister(CashRegister cashRegister) {
+		this.cashRegister = cashRegister;
 	}
 }

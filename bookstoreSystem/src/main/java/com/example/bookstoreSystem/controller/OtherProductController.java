@@ -84,4 +84,11 @@ public class OtherProductController {
 	public ResponseEntity<OtherProductDto> findOtherProductByOtherProductsBookstoresId(@PathVariable("id") Long id) {
 		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByOtherProductsBookstoresId(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getOtherProductByReceiptItem/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OtherProductDto> findOtherProductByReceiptItem(@PathVariable("id") Long id) {
+		if(otherProductService.findOneByReceiptItemId(id) == null) return new ResponseEntity<OtherProductDto>(new OtherProductDto(), HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByReceiptItemId(id)), HttpStatus.OK);
+	}
 }

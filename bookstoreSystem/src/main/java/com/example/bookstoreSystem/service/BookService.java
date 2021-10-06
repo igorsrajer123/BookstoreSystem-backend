@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.bookstoreSystem.model.Book;
 import com.example.bookstoreSystem.model.BookLanguage;
+import com.example.bookstoreSystem.model.BooksBookstores;
+import com.example.bookstoreSystem.model.Bookstore;
 import com.example.bookstoreSystem.repository.BookRepository;
+import com.example.bookstoreSystem.repository.BooksBookstoresRepository;
+import com.example.bookstoreSystem.repository.BookstoreRepository;
 import com.example.bookstoreSystem.repository.PublisherRepository;
 
 @Service
@@ -18,6 +22,12 @@ public class BookService {
 	
 	@Autowired
 	private PublisherRepository publisherRepository;
+	
+	@Autowired
+	private BooksBookstoresRepository booksBookstoresRepository;
+	
+	@Autowired
+	private BookstoreRepository bookstoreRepository;
 	
 	public List<Book> findAll() {
 		return bookRepository.findAll();
@@ -65,6 +75,15 @@ public class BookService {
 		newBook.setGenres(book.getGenres());
 		bookRepository.save(newBook);
 		
+		List<Bookstore> allBookstores = bookstoreRepository.findAll();
+		for(Bookstore b : allBookstores) {
+			BooksBookstores newBookBookstore = new BooksBookstores();
+			newBookBookstore.setAmount(0);
+			newBookBookstore.setBookstore(b);
+			newBookBookstore.setBook(newBook);
+			booksBookstoresRepository.save(newBookBookstore);
+		}
+		
 		return newBook;
 	}
 	
@@ -88,5 +107,9 @@ public class BookService {
 	
 	public Book findOneByBooksInBookstoreId(Long id) {
 		return bookRepository.findOneByBooksInBookstores_Id(id);
+	}
+	
+	public Book findOneByReceiptItemId(Long id) {
+		return bookRepository.findOneByBookReceiptItems_Id(id);
 	}
 }

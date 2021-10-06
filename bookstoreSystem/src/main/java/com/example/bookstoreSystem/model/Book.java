@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -35,6 +36,10 @@ public class Book extends Product{
 	@JsonManagedReference(value = "bookBookstores-movement")
 	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<BooksBookstores> booksInBookstores;
+	
+	@JsonManagedReference(value = "bookReceiptItem-movement")
+	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ReceiptItem> bookReceiptItems;
 	
 	public Book() {
 		super();
@@ -79,4 +84,14 @@ public class Book extends Product{
 	public void setBooksInBookstores(List<BooksBookstores> booksInBookstores) {
 		this.booksInBookstores = booksInBookstores;
 	}
+
+	public List<ReceiptItem> getBookReceiptItems() {
+		return bookReceiptItems;
+	}
+
+	public void setBookReceiptItems(List<ReceiptItem> bookReceiptItems) {
+		this.bookReceiptItems = bookReceiptItems;
+	}
+
+	
 }
