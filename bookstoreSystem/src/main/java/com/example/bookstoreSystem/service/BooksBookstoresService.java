@@ -21,4 +21,15 @@ public class BooksBookstoresService {
 	public List<BooksBookstores> findAllByBookstoreId(Long id) {
 		return booksBookstoresRepository.findAllByBookstoreId(id);
 	}
+	
+	public BooksBookstores updateBooksBookstoresAmount(BooksBookstores booksBookstores) {
+		BooksBookstores myBook = booksBookstoresRepository.findOneById(booksBookstores.getId());
+		
+		if(myBook == null) return null;
+		
+		myBook.setAmount(booksBookstores.getAmount());
+		booksBookstoresRepository.save(myBook);
+		
+		return myBook;
+	}
 }

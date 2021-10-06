@@ -12,5 +12,7 @@ public interface OtherProductsBookstoresRepository extends JpaRepository<OtherPr
 
 	List<OtherProductsBookstores> findAll();
 	
+	OtherProductsBookstores findOneById(Long id);
+	
 	List<OtherProductsBookstores> findAllByBookstoreId(Long id);
 }

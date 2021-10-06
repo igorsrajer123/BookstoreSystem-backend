@@ -21,4 +21,15 @@ public class OtherProductsBookstoresService {
 	public List<OtherProductsBookstores> findAllByBookstoreId(Long id) {
 		return otherProductsBookstoresRepository.findAllByBookstoreId(id);
 	}
+	
+	public OtherProductsBookstores updateOtherProductsBookstoresAmount(OtherProductsBookstores otherProductsBookstores) {
+		OtherProductsBookstores myOtherProduct = otherProductsBookstoresRepository.findOneById(otherProductsBookstores.getId());
+		
+		if(myOtherProduct == null) return null;
+		
+		myOtherProduct.setAmount(otherProductsBookstores.getAmount());
+		otherProductsBookstoresRepository.save(myOtherProduct);
+		
+		return myOtherProduct;
+	}
 }

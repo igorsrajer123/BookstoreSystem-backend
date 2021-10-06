@@ -270,6 +270,7 @@ INSERT INTO writer_books(writer_id, book_id) VALUES (9, 35);
 INSERT INTO writer_books(writer_id, book_id) VALUES (9, 36);
 INSERT INTO writer_books(writer_id, book_id) VALUES (9, 37);
 
+--books in bookstores
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (23, 1, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (15, 2, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (40, 3, 1);

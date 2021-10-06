@@ -12,5 +12,7 @@ public interface BooksBookstoresRepository extends JpaRepository<BooksBookstores
 
 	List<BooksBookstores> findAll();
 	
+	BooksBookstores findOneById(Long id);
+	
 	List<BooksBookstores> findAllByBookstoreId(Long id);
 }
