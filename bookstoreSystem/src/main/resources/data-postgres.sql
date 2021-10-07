@@ -366,8 +366,8 @@ INSERT INTO receipt(number, cash_register_id, seller_id, value, status, date_and
 INSERT INTO receipt(number, cash_register_id, seller_id, value, status, date_and_time) VALUES (3321, 2, 2, 1500, 'CREATED', '2021-05-05 10:42:10');
 
 ---receipt items
-INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (2, 1, 1, null);
-INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 1, 2, null);
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (2, 1, null, 39);
+INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 1, null, 38);
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 2, 3, null);
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 2, 4, null);
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 3, 5, null);

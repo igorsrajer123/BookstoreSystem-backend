@@ -73,10 +73,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
 													"/createBookstoreAdmin", "/uploadBookstoreImage/*", "/createNewWriter", "/createNewBookstore",
 													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct", "/uploadOtherProductImage/*", "/uploadBookImage/*",
-													"/createNewPublisher", "/createBookstoreSeller");
+													"/createNewPublisher", "/createBookstoreSeller", "/createReceipt/*");
 		
 		web.ignoring().antMatchers(HttpMethod.PUT, "/updateWriter", "/addWriterNewBook/*", "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/editPublisher",
-												"/updateBook", "/updateOtherProduct", "/updateBooksBookstoresAmount", "/updateOtherProductsBookstoresAmount");
+												"/updateBook", "/updateOtherProduct", "/updateBooksBookstoresAmount", "/updateOtherProductsBookstoresAmount", "/reverseReceipt/*/*");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",

@@ -30,7 +30,7 @@ public class Seller {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Bookstore bookstore;
 	
-	@JsonIgnoreProperties(value = {"seller"}, allowSetters = true)
+	@JsonManagedReference(value = "createdReceipts-movement")
 	@OneToMany(mappedBy = "seller", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Receipt> createdReceipts;
 	

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -38,7 +39,7 @@ public class Receipt {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private CashRegister cashRegister;
 	
-	@JsonIgnoreProperties("createdReceipts")
+	@JsonBackReference(value = "createdReceipts-movement")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Seller seller;
 	
