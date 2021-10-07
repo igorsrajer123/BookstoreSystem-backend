@@ -39,4 +39,11 @@ public class OtherProductsBookstoresController {
 		
 		return new ResponseEntity<OtherProductsBookstores>(otherProductsBookstoresService.updateOtherProductsBookstoresAmount(otherProductsBookstores), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/checkOtherProductAvailableInBookstore/{bookstoreId}/{otherProductId}/{amount}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> checkOtherProductAvailable(@PathVariable("bookstoreId") Long bookstoreId, @PathVariable("otherProductId") Long otherProductId, @PathVariable("amount") int amount) {
+		if(otherProductsBookstoresService.checkOtherProductAmountAvailable(bookstoreId, otherProductId, amount) == false) return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<>(true, HttpStatus.OK);
+	}
 }

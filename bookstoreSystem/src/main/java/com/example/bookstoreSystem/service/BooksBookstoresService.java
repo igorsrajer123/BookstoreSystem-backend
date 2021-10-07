@@ -32,4 +32,16 @@ public class BooksBookstoresService {
 		
 		return myBook;
 	}
+	
+	public boolean checkBookAmountAvailable(Long bookstoreId, Long bookId, int amount) {
+		List<BooksBookstores> bookstoreBooks = booksBookstoresRepository.findAllByBookstoreId(bookstoreId);
+		for(BooksBookstores b : bookstoreBooks) {
+			if(b.getBook().getId() == bookId) {
+				if(b.getAmount() >= amount) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

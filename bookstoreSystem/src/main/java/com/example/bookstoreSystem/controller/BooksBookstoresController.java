@@ -39,4 +39,11 @@ public class BooksBookstoresController {
 		
 		return new ResponseEntity<BooksBookstores>(booksBookstoresService.updateBooksBookstoresAmount(booksBookstores), HttpStatus.OK);
 	}
+	
+	@GetMapping(value ="/checkBookAvailableInBookstore/{bookstoreId}/{bookId}/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> checkBookAvailable(@PathVariable("bookstoreId") Long bookstoreId, @PathVariable("bookId") Long bookId, @PathVariable("amount") int amount) {
+		if(booksBookstoresService.checkBookAmountAvailable(bookstoreId, bookId, amount) == false) return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<>(true, HttpStatus.OK);
+	}
 }

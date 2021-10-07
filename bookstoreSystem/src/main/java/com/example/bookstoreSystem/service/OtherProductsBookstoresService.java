@@ -32,4 +32,16 @@ public class OtherProductsBookstoresService {
 		
 		return myOtherProduct;
 	}
+	
+	public boolean checkOtherProductAmountAvailable(Long bookstoreId, Long otherProductId, int amount) {
+		List<OtherProductsBookstores> bookstoreOtherProducts = otherProductsBookstoresRepository.findAllByBookstoreId(bookstoreId);
+		for(OtherProductsBookstores o : bookstoreOtherProducts) {
+			if(o.getOtherProduct().getId() == otherProductId) {
+				if(o.getAmount() >= amount) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }
