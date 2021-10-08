@@ -41,9 +41,6 @@ INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (4, 2);
 INSERT INTO seller(user_id, bookstore_id) VALUES (5, 1);
 INSERT INTO seller(user_id, bookstore_id) VALUES (6, 2);
 
---shopping cart
-INSERT INTO shopping_cart(customer_id) VALUES (1);
-
 --publishers
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Magnet', 'Dalmatinska 12', 'Beograd', '+3815435');
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Matica srpska', 'Principova 98', 'Beograd', '+38134534');
@@ -166,6 +163,14 @@ INSERT INTO book(id, code, name, price, description, published, publisher_id, nu
 --products
 INSERT INTO other_product(id, code, name, price, description, published, type, publisher_id, cover_image) VALUES (38, '4311', 'Lego Set: Super Mario', 999, 'Lego sett1', '2019-02-01', 'TOY', 15, 'legoSet.jpg');
 INSERT INTO other_product(id, code, name, price, description, published, type, publisher_id, cover_image) VALUES (39, '4312', 'Lego Set: Creator', 999, 'Lego sett2', '2019-05-01', 'TOY', 15, 'legoSet2.jpg');
+
+--shopping cart
+INSERT INTO shopping_cart(customer_id) VALUES (1);
+
+--shopping cart items
+INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (2, 1, null, 1);
+INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (1, null, 39, 1);
+INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (1, 3, null, 1);
 
 --book's genres
 INSERT INTO genre_books(book_Id, genre_id) VALUES (1, 12);

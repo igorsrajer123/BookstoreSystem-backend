@@ -91,4 +91,11 @@ public class OtherProductController {
 		
 		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByReceiptItemId(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getOtherProductByShoppingCartItem/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OtherProductDto> findOtherProductByShoppingCartItem(@PathVariable("id") Long id) {
+		if(otherProductService.findOneByShoppingCartItem(id) == null) return new ResponseEntity<OtherProductDto>(new OtherProductDto(), HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByShoppingCartItem(id)), HttpStatus.OK);
+	}
 }

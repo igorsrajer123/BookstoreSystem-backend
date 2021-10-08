@@ -41,6 +41,10 @@ public class Book extends Product{
 	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ReceiptItem> bookReceiptItems;
 	
+	@JsonManagedReference(value = "shoppingCartItemsBook-movement")
+	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+	private List<ShoppingCartItem> shoppingCartItems;
+	
 	public Book() {
 		super();
 	}
@@ -91,6 +95,14 @@ public class Book extends Product{
 
 	public void setBookReceiptItems(List<ReceiptItem> bookReceiptItems) {
 		this.bookReceiptItems = bookReceiptItems;
+	}
+
+	public List<ShoppingCartItem> getShoppingCartItems() {
+		return shoppingCartItems;
+	}
+
+	public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
+		this.shoppingCartItems = shoppingCartItems;
 	}
 
 	

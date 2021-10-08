@@ -26,4 +26,6 @@ public interface OtherProductRepository extends JpaRepository<OtherProduct, Long
 	OtherProduct findOneByOtherProductsInBookstores_Id(Long id);
 	
 	OtherProduct findOneByOtherProductReceiptItems_Id(Long id);
+	
+	OtherProduct findOneByShoppingCartItems_Id(Long id);
 }

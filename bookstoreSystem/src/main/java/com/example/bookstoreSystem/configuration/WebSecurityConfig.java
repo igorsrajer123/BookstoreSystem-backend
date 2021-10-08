@@ -73,10 +73,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
 													"/createBookstoreAdmin", "/uploadBookstoreImage/*", "/createNewWriter", "/createNewBookstore",
 													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct", "/uploadOtherProductImage/*", "/uploadBookImage/*",
-													"/createNewPublisher", "/createBookstoreSeller", "/createReceipt/*");
+													"/createNewPublisher", "/createBookstoreSeller", "/createReceipt/*", "/createNewShoppingCartItem");
 		
 		web.ignoring().antMatchers(HttpMethod.PUT, "/updateWriter", "/addWriterNewBook/*", "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/editPublisher",
 												"/updateBook", "/updateOtherProduct", "/updateBooksBookstoresAmount", "/updateOtherProductsBookstoresAmount", "/reverseReceipt/*/*");
+		
+		web.ignoring().antMatchers(HttpMethod.DELETE, "/deleteShoppingCartItem/*");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/getAllUsers", "/getUserByEmail/*", "/getUserById/*", "/getCurrentUser", "/activateAccount/*", "/getAllGenres",
 												"/getGenreById/*", "/getGenreByName/*", "/getAllWriters", "/getBookWriters/*", "/getAllCustomers", "/getCustomerByUser/*",
@@ -88,6 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/getBooksInBookstore/*", "/getAllOtherProductsInBookstores", "/getOtherProductsInBookstore/*", "/getBookByBooksInBookstoreId/*",
 												"/getOtherProductByOtherProductsBookstoresId/*", "/getAllCashRegisters", "/getCashRegisterByBookstoreId/*", "/getAllReceipts",
 												"/getCashRegistersReceipts/*", "/getReceiptItems/*", "/getAllReceiptItems", "/getBookFromReceiptItem/*", "/getOtherProductByReceiptItem/*",
-												"/checkBookAvailableInBookstore/*/*/*", "/checkOtherProductAvailableInBookstore/*/*/*", "/getShoppingCartByUserId/*");
+												"/checkBookAvailableInBookstore/*/*/*", "/checkOtherProductAvailableInBookstore/*/*/*", "/getShoppingCartByUserId/*", "/getShoppingCartItems/*",
+												"/getBookFromShoppingCartItem/*", "/getOtherProductByShoppingCartItem/*");
 	}
 }

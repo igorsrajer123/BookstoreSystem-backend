@@ -9,4 +9,6 @@ import com.example.bookstoreSystem.model.ShoppingCart;
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long>{
 
 	ShoppingCart findOneByCustomerId(Long id);
+	
+	ShoppingCart findOneById(Long id);
 }
