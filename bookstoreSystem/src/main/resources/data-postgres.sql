@@ -41,6 +41,9 @@ INSERT INTO bookstore_administrator(user_id, bookstore_id) VALUES (4, 2);
 INSERT INTO seller(user_id, bookstore_id) VALUES (5, 1);
 INSERT INTO seller(user_id, bookstore_id) VALUES (6, 2);
 
+--shopping cart
+INSERT INTO shopping_cart(customer_id) VALUES (1);
+
 --publishers
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Magnet', 'Dalmatinska 12', 'Beograd', '+3815435');
 INSERT INTO publisher(name, address, city, phone_number) VALUES ('Matica srpska', 'Principova 98', 'Beograd', '+38134534');
@@ -122,7 +125,7 @@ INSERT INTO genre(name) VALUES ('Dystopian Fiction');
 INSERT INTO genre(name) VALUES ('Novel');
 
 --books
-INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (1, '115521', 'Game of Thrones', 1555, 'descrption1234', '2020-05-01', 1, 400, 'ENGLISH', 'gameOfThrones.jpg', 'PAPERBACK');
+INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (1, '115521', 'Game of Thrones', 1555, 'A Game of Thrones is the first novel in A Song of Ice and Fire, a series of fantasy novels by the American author George R. R. Martin. ... In the novel, recounting events from various points of view, Martin introduces the plot-lines of the noble houses of Westeros, the Wall, and the Targaryens', '2020-05-01', 1, 400, 'ENGLISH', 'gameOfThrones.jpg', 'PAPERBACK');
 INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (2, '5551231', 'Lord of the Rings: Two Towers', 1500, 'description2222', '2020-05-01', 2, 420, 'SERBIAN', 'twoTowers.jpg', 'PAPERBACK');
 INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (3, '332515', 'Lord of the Rings: Fellowship of the Ring', 1200, 'descrption3333', '2020-05-01', 2, 510, 'SERBIAN', 'fellowshipOfTheRing.jpg', 'PAPERBACK');
 INSERT INTO book(id, code, name, price, description, published, publisher_id, number_of_pages, language, cover_image, cover_type) VALUES (4, '6532', 'Lord of the Rings: Return of the King', 1200, 'descrption4444', '2020-05-01', 2, 390, 'SERBIAN', 'returnOfTheKing.jpg', 'PAPERBACK');

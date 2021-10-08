@@ -38,7 +38,7 @@ public class BookController {
 	
 	@GetMapping(value = "/getBookById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BookDto> getBookById(@PathVariable("id") Long id) {
-		if(bookService.findOneById(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(bookService.findOneById(id) == null) return new ResponseEntity<BookDto>(new BookDto(), HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneById(id)), HttpStatus.OK); 
 	}

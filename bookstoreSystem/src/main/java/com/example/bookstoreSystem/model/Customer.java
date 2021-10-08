@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -24,6 +25,10 @@ public class Customer {
 	
 	@Column(name = "processed", nullable = false)
 	private boolean processed;
+	
+	@JsonBackReference(value = "shoppingCart_movement")
+	@OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private ShoppingCart shoppingCart;
 	
 	public Customer() {
 		super();
@@ -51,5 +56,13 @@ public class Customer {
 
 	public void setProcessed(boolean processed) {
 		this.processed = processed;
+	}
+
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
 	}
 }

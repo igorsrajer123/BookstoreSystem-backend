@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.bookstoreSystem.model.Authority;
 import com.example.bookstoreSystem.model.Customer;
+import com.example.bookstoreSystem.model.ShoppingCart;
 import com.example.bookstoreSystem.model.User;
 import com.example.bookstoreSystem.repository.CustomerRepository;
+import com.example.bookstoreSystem.repository.ShoppingCartRepository;
 import com.example.bookstoreSystem.repository.UserRepository;
 
 @Service
@@ -28,6 +30,9 @@ public class LoginService implements UserDetailsService{
 	
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ShoppingCartRepository shoppingCartRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) {
@@ -57,6 +62,10 @@ public class LoginService implements UserDetailsService{
 		List<Authority> authorities = authorityService.findByName("ROLE_CUSTOMER");
 		customer.getUser().setAuthorities(authorities);
 		customerRepository.save(customer);
+		
+		ShoppingCart newShoppingCart = new ShoppingCart();
+		newShoppingCart.setCustomer(customer);
+		shoppingCartRepository.save(newShoppingCart);
 		
 		return customer;
 	}
