@@ -35,6 +35,10 @@ public class OtherProduct extends Product{
 	@OneToMany(mappedBy = "otherProduct", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	private List<ShoppingCartItem> shoppingCartItems;
 	
+	@JsonManagedReference(value = "otherProductDeliveryItem-movement")
+	@OneToMany(mappedBy = "otherProduct", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<DeliveryItem> deliveryItems;
+	
 	public OtherProduct() {
 		super();
 	}
@@ -77,5 +81,13 @@ public class OtherProduct extends Product{
 
 	public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
 		this.shoppingCartItems = shoppingCartItems;
+	}
+
+	public List<DeliveryItem> getDeliveryItems() {
+		return deliveryItems;
+	}
+
+	public void setDeliveryItems(List<DeliveryItem> deliveryItems) {
+		this.deliveryItems = deliveryItems;
 	}
 }

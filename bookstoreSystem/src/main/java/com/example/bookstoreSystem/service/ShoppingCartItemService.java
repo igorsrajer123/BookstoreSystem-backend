@@ -7,10 +7,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bookstoreSystem.model.Book;
+import com.example.bookstoreSystem.model.BooksBookstores;
+import com.example.bookstoreSystem.model.OtherProduct;
+import com.example.bookstoreSystem.model.OtherProductsBookstores;
 import com.example.bookstoreSystem.model.ShoppingCart;
 import com.example.bookstoreSystem.model.ShoppingCartItem;
 import com.example.bookstoreSystem.repository.BookRepository;
+import com.example.bookstoreSystem.repository.BooksBookstoresRepository;
 import com.example.bookstoreSystem.repository.OtherProductRepository;
+import com.example.bookstoreSystem.repository.OtherProductsBookstoresRepository;
 import com.example.bookstoreSystem.repository.ShoppingCartItemRepository;
 import com.example.bookstoreSystem.repository.ShoppingCartRepository;
 
@@ -28,6 +34,12 @@ public class ShoppingCartItemService {
 	
 	@Autowired
 	private OtherProductRepository otherProductRepository;
+	
+	@Autowired
+	private BooksBookstoresRepository bbRepository;
+	
+	@Autowired
+	private OtherProductsBookstoresRepository opbRepository;
 	
 	public List<ShoppingCartItem> findAllByShoppingCartId(Long id) {
 		return shoppingCartItemRepository.findAllByShoppingCartId(id);
@@ -88,5 +100,37 @@ public class ShoppingCartItemService {
 	@Transactional
 	public Long deleteItem(Long id) {
 		return shoppingCartItemRepository.deleteOneById(id);		
+	}
+	
+	public Boolean checkIfItemAvailable(Long id, int amount) {
+		Book myBook = bookRepository.findOneById(id);
+		
+		if(myBook == null) {
+			OtherProduct myOtherProduct = otherProductRepository.findOneById(id);
+			List<OtherProductsBookstores> myOtherProductsBookstores = opbRepository.findAllByOtherProductId(myOtherProduct.getId());
+			
+			int otherProductSum = 0;
+			for(OtherProductsBookstores o : myOtherProductsBookstores)
+				otherProductSum += o.getAmount();
+			
+			System.out.println(otherProductSum);
+			
+			if(amount > otherProductSum)
+				return false;
+			
+			return true;
+		}else {
+			List<BooksBookstores> myBooksBookstores = bbRepository.findAllByBookId(myBook.getId());
+			int bookSum = 0;
+			for(BooksBookstores b : myBooksBookstores)
+				bookSum += b.getAmount();
+			
+			System.out.println(bookSum);
+			
+			if(amount > bookSum)
+				return false;
+		
+			return true;
+		}
 	}
 }

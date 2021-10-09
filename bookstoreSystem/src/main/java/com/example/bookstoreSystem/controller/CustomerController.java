@@ -38,4 +38,11 @@ public class CustomerController {
 		
 		return new ResponseEntity<CustomerDto>(new CustomerDto(customerService.findOneByUserId(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getCustomerByDeliveryId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomerDto> getCustomerByDeliveryId(@PathVariable("id") Long id) {
+		if(customerService.findOneByDeliveryId(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<CustomerDto>(new CustomerDto(customerService.findOneByDeliveryId(id)), HttpStatus.OK);
+	}
 }

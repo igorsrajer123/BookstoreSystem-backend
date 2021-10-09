@@ -97,4 +97,32 @@ public class EmailService {
 		javaMailSender.send(msg);
 		System.out.println("Email sent!");
 	}
+	
+	@Async
+	public void deliveryDeclined() throws  MailException, InterruptedException {
+		System.out.println("Mail is sending...");
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo("isapsw123@gmail.com");
+		msg.setFrom(environment.getProperty("spring.mail.username"));
+		msg.setSubject("Delivery Request Declined :(");
+		msg.setText("We inform you that your delivery from Bookstore++ has been declined by our system administrator!");
+	
+		javaMailSender.send(msg);
+		System.out.println("Email sent!");
+	}
+	
+	@Async
+	public void deliveryAccepted() throws  MailException, InterruptedException {
+		System.out.println("Mail is sending...");
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo("isapsw123@gmail.com");
+		msg.setFrom(environment.getProperty("spring.mail.username"));
+		msg.setSubject("Delivery Request Accepted :)");
+		msg.setText("We inform you that your delivery from Bookstore++ has been accepted.\nYour items will arrive in the next 7 work days.");
+	
+		javaMailSender.send(msg);
+		System.out.println("Email sent!");
+	}
 }

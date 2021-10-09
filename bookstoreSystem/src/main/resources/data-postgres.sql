@@ -379,3 +379,6 @@ INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 2, 3, null);
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 2, 4, null);
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 3, 5, null);
+
+--deliveries
+INSERT INTO delivery(contact_phone, created_date, delivery_address, note, postal_code, status, customer_id) VALUES ('555-333', '2021-02-02 16:43:00', 'Tomasevacki drum 44', 'Be fast!', '25000', 'DECLINED', 1);

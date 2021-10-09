@@ -1,5 +1,7 @@
 package com.example.bookstoreSystem.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -29,6 +32,10 @@ public class Customer {
 	@JsonBackReference(value = "shoppingCart_movement")
 	@OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ShoppingCart shoppingCart;
+	
+	@JsonManagedReference(value = "deliveries-movement")
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+	private List<Delivery> deliveries;
 	
 	public Customer() {
 		super();
@@ -64,5 +71,13 @@ public class Customer {
 
 	public void setShoppingCart(ShoppingCart shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+
+	public List<Delivery> getDeliveries() {
+		return deliveries;
+	}
+
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 }

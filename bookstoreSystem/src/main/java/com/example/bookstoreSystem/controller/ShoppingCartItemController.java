@@ -38,4 +38,9 @@ public class ShoppingCartItemController {
 	public ResponseEntity<Long> createNewShoppingCartItem(@PathVariable("id") Long id) {
 		return new ResponseEntity<Long>(shoppingCartItemService.deleteItem(id), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/checkItemAvailable/{id}/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> checkItemAvailable(@PathVariable("id") Long id, @PathVariable("amount") int amount) {
+		return new ResponseEntity<Boolean>(shoppingCartItemService.checkIfItemAvailable(id, amount), HttpStatus.OK);
+	}
 }

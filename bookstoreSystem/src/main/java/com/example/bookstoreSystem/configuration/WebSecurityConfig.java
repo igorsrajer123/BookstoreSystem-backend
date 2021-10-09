@@ -73,10 +73,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		web.ignoring().antMatchers(HttpMethod.POST, "/login", "/changePassword", "/sendAccountConfirmation", "/uploadProfileImage/*", "/sendPasswordRestart/*",
 													"/createBookstoreAdmin", "/uploadBookstoreImage/*", "/createNewWriter", "/createNewBookstore",
 													"/uploadWriterImage/*", "/createNewBook", "/createNewOtherProduct", "/uploadOtherProductImage/*", "/uploadBookImage/*",
-													"/createNewPublisher", "/createBookstoreSeller", "/createReceipt/*", "/createNewShoppingCartItem");
+													"/createNewPublisher", "/createBookstoreSeller", "/createReceipt/*", "/createNewShoppingCartItem", "/createDelivery");
 		
 		web.ignoring().antMatchers(HttpMethod.PUT, "/updateWriter", "/addWriterNewBook/*", "/updateBookstore", "/disableAccount/*", "/enableAccount/*", "/editPublisher",
-												"/updateBook", "/updateOtherProduct", "/updateBooksBookstoresAmount", "/updateOtherProductsBookstoresAmount", "/reverseReceipt/*/*");
+												"/updateBook", "/updateOtherProduct", "/updateBooksBookstoresAmount", "/updateOtherProductsBookstoresAmount", "/reverseReceipt/*/*",
+												"/declineDelivery/*", "/acceptDelivery/*");
 		
 		web.ignoring().antMatchers(HttpMethod.DELETE, "/deleteShoppingCartItem/*");
 		
@@ -91,6 +92,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/getOtherProductByOtherProductsBookstoresId/*", "/getAllCashRegisters", "/getCashRegisterByBookstoreId/*", "/getAllReceipts",
 												"/getCashRegistersReceipts/*", "/getReceiptItems/*", "/getAllReceiptItems", "/getBookFromReceiptItem/*", "/getOtherProductByReceiptItem/*",
 												"/checkBookAvailableInBookstore/*/*/*", "/checkOtherProductAvailableInBookstore/*/*/*", "/getShoppingCartByUserId/*", "/getShoppingCartItems/*",
-												"/getBookFromShoppingCartItem/*", "/getOtherProductByShoppingCartItem/*");
+												"/getBookFromShoppingCartItem/*", "/getOtherProductByShoppingCartItem/*", "/checkItemAvailable/*/*", "/getAllDeliveries", "/getCustomerByDeliveryId/*"
+												);
 	}
 }
