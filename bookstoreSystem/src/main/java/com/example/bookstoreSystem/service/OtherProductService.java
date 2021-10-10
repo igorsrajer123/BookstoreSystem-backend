@@ -1,15 +1,18 @@
 package com.example.bookstoreSystem.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bookstoreSystem.model.Bookstore;
+import com.example.bookstoreSystem.model.CatalogueItem;
 import com.example.bookstoreSystem.model.OtherProduct;
 import com.example.bookstoreSystem.model.OtherProductsBookstores;
 import com.example.bookstoreSystem.model.ProductType;
 import com.example.bookstoreSystem.repository.BookstoreRepository;
+import com.example.bookstoreSystem.repository.CatalogueItemRepository;
 import com.example.bookstoreSystem.repository.OtherProductRepository;
 import com.example.bookstoreSystem.repository.OtherProductsBookstoresRepository;
 import com.example.bookstoreSystem.repository.PublisherRepository;
@@ -28,6 +31,9 @@ public class OtherProductService {
 	
 	@Autowired
 	private BookstoreRepository bookstoreRepository;
+	
+	@Autowired
+	private CatalogueItemRepository catalogueItemRepository;
 	
 	public List<OtherProduct> findAll() {
 		return otherProductRepository.findAll();
@@ -78,6 +84,14 @@ public class OtherProductService {
 			otherProductsBookstoresRepository.save(newOtherProductBookstore);
 		}
 		
+		CatalogueItem newCatalogueItem = new CatalogueItem();
+		newCatalogueItem.setOtherProduct(newOtherProduct);
+		newCatalogueItem.setPriceEnd(null);
+		newCatalogueItem.setBook(null);
+		newCatalogueItem.setPrice(newOtherProduct.getPrice());
+		newCatalogueItem.setPriceStart(LocalDate.now());
+		catalogueItemRepository.save(newCatalogueItem);
+		
 		return newOtherProduct;
 	}
 	
@@ -86,11 +100,33 @@ public class OtherProductService {
 		
 		if(myOtherProduct == null) return null;
 		
+		double price = myOtherProduct.getPrice();
 		myOtherProduct.setName(otherProduct.getName());
 		myOtherProduct.setDescription(otherProduct.getDescription());
 		myOtherProduct.setPrice(otherProduct.getPrice());
 		myOtherProduct.setPublished(otherProduct.getPublished());
 		myOtherProduct.setPublisher(publisherRepository.findOneById(otherProduct.getPublisher().getId()));
+		
+		List<CatalogueItem> otherProductItems = catalogueItemRepository.findAllByOtherProductId(myOtherProduct.getId());
+		for(CatalogueItem c : otherProductItems) 
+			if(c.getPriceEnd() == null) {
+				if(c.getPrice() != myOtherProduct.getPrice()) {
+					c.setPriceEnd(LocalDate.now());
+					catalogueItemRepository.save(c);
+					break;	
+				}
+			}
+		
+		if(price != otherProduct.getPrice()) {
+			CatalogueItem newCatalogueItem = new CatalogueItem();
+			newCatalogueItem.setOtherProduct(myOtherProduct);
+			newCatalogueItem.setPriceEnd(null);
+			newCatalogueItem.setBook(null);
+			newCatalogueItem.setPrice(myOtherProduct.getPrice());
+			newCatalogueItem.setPriceStart(LocalDate.now());
+			catalogueItemRepository.save(newCatalogueItem);
+		}
+		
 		otherProductRepository.save(myOtherProduct);
 		
 		return myOtherProduct; 

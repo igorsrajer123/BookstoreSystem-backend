@@ -158,7 +158,7 @@ public class ReceiptService {
 		myReceipt.setStatus(ReceiptStatus.REVERSED);
 		receiptRepository.save(myReceipt);
 		
-		Bookstore myBookstore = bookstoreRepository.findOneById(id);
+		Bookstore myBookstore = bookstoreRepository.findOneById(bookstoreId);
 		List<ReceiptItem> receiptItems = new ArrayList<ReceiptItem>();
 		receiptItems = myReceipt.getReceiptItems();
 		

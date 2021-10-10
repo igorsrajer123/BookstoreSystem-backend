@@ -74,9 +74,10 @@ public class BookController {
 	
 	@PutMapping(value = "/updateBook", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BookDto> updateBook(@RequestBody Book book) {
-		if(bookService.updateBook(book) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		Book updatedBook = bookService.updateBook(book);
+		if(updatedBook == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<BookDto>(new BookDto(bookService.updateBook(book)), HttpStatus.OK);
+		return new ResponseEntity<BookDto>(new BookDto(updatedBook), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getBookByBooksInBookstoreId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

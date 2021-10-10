@@ -49,6 +49,10 @@ public class Book extends Product{
 	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<DeliveryItem> deliveryItems;
 	
+	@JsonManagedReference(value = "catalogueItemBook-movement")
+	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CatalogueItem> catalogueItems;
+	
 	public Book() {
 		super();
 	}
@@ -115,6 +119,14 @@ public class Book extends Product{
 
 	public void setDeliveryItems(List<DeliveryItem> deliveryItems) {
 		this.deliveryItems = deliveryItems;
+	}
+
+	public List<CatalogueItem> getCatalogueItems() {
+		return catalogueItems;
+	}
+
+	public void setCatalogueItems(List<CatalogueItem> catalogueItems) {
+		this.catalogueItems = catalogueItems;
 	}
 
 	

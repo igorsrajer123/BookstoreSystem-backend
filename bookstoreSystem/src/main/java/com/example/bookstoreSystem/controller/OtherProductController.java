@@ -75,9 +75,10 @@ public class OtherProductController {
 	
 	@PutMapping(value = "/updateOtherProduct", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<OtherProductDto> updateOtherProduct(@RequestBody  OtherProduct otherProduct) {
-		if(otherProductService.updateOtherProduct(otherProduct) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		OtherProduct updatedOtherProduct = otherProductService.updateOtherProduct(otherProduct);
+		if(updatedOtherProduct == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.updateOtherProduct(otherProduct)), HttpStatus.OK);
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(updatedOtherProduct), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getOtherProductByOtherProductsBookstoresId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

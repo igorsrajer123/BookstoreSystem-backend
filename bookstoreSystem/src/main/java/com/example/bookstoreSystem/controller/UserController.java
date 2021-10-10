@@ -72,31 +72,18 @@ public class UserController {
 	}
 	
 	@PutMapping(value = "/disableAccount/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserDto> disableAccount(@PathVariable("id") Long id) {
+	public ResponseEntity<UserDto> disableAccount(@PathVariable("id") Long id) throws MailException, InterruptedException {
 		if(userService.disableUserAccount(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		try {
-			emailService.accountDisabledNotification();
-		} catch (MailException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+		emailService.accountDisabledNotification();
+
 		return new ResponseEntity<UserDto>(new UserDto(userService.disableUserAccount(id)), HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/enableAccount/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserDto> enableAccount(@PathVariable("id") Long id) {
+	public ResponseEntity<UserDto> enableAccount(@PathVariable("id") Long id) throws MailException, InterruptedException {
 		if(userService.enableUserAccount(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		
-		try {
 			emailService.accountEnabledNotification();
-		} catch (MailException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
 		return new ResponseEntity<UserDto>(new UserDto(userService.enableUserAccount(id)), HttpStatus.OK);
 	}

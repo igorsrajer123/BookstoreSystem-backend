@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookstoreSystem.dto.ReceiptDto;
-import com.example.bookstoreSystem.model.Receipt;
 import com.example.bookstoreSystem.model.ReceiptItem;
 import com.example.bookstoreSystem.service.ReceiptService;
 
@@ -46,12 +45,12 @@ public class ReceiptController {
 	}
 	
 	@PostMapping(value = "/createReceipt/{sellerId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Receipt> createReceipt(@PathVariable("sellerId") Long id, @RequestBody List<ReceiptItem> items) {
-		return new ResponseEntity<Receipt>(receiptService.createNew(id, items), HttpStatus.OK);
+	public ResponseEntity<ReceiptDto> createReceipt(@PathVariable("sellerId") Long id, @RequestBody List<ReceiptItem> items) {
+		return new ResponseEntity<ReceiptDto>(new ReceiptDto(receiptService.createNew(id, items)), HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/reverseReceipt/{receiptId}/{bookstoreId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Receipt> reverseReceipt(@PathVariable("receiptId") Long receiptId, @PathVariable("bookstoreId") Long bookstoreId) {
-		return new ResponseEntity<Receipt>(receiptService.reverseReceipt(receiptId, bookstoreId), HttpStatus.OK);
+	public ResponseEntity<ReceiptDto> reverseReceipt(@PathVariable("receiptId") Long receiptId, @PathVariable("bookstoreId") Long bookstoreId) {
+		return new ResponseEntity<ReceiptDto>(new ReceiptDto(receiptService.reverseReceipt(receiptId, bookstoreId)), HttpStatus.OK);
 	}
 }

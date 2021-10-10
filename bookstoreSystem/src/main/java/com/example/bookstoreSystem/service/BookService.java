@@ -1,5 +1,6 @@
 package com.example.bookstoreSystem.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,11 @@ import com.example.bookstoreSystem.model.Book;
 import com.example.bookstoreSystem.model.BookLanguage;
 import com.example.bookstoreSystem.model.BooksBookstores;
 import com.example.bookstoreSystem.model.Bookstore;
+import com.example.bookstoreSystem.model.CatalogueItem;
 import com.example.bookstoreSystem.repository.BookRepository;
 import com.example.bookstoreSystem.repository.BooksBookstoresRepository;
 import com.example.bookstoreSystem.repository.BookstoreRepository;
+import com.example.bookstoreSystem.repository.CatalogueItemRepository;
 import com.example.bookstoreSystem.repository.PublisherRepository;
 
 @Service
@@ -28,6 +31,9 @@ public class BookService {
 	
 	@Autowired
 	private BookstoreRepository bookstoreRepository;
+	
+	@Autowired
+	private CatalogueItemRepository catalogueItemRepository;
 	
 	public List<Book> findAll() {
 		return bookRepository.findAll();
@@ -84,6 +90,14 @@ public class BookService {
 			booksBookstoresRepository.save(newBookBookstore);
 		}
 		
+		CatalogueItem newCatalogueItem = new CatalogueItem();
+		newCatalogueItem.setOtherProduct(null);
+		newCatalogueItem.setPriceEnd(null);
+		newCatalogueItem.setBook(newBook);
+		newCatalogueItem.setPrice(newBook.getPrice());
+		newCatalogueItem.setPriceStart(LocalDate.now());
+		catalogueItemRepository.save(newCatalogueItem);
+		
 		return newBook;
 	}
 	
@@ -92,6 +106,7 @@ public class BookService {
 		
 		if(myBook == null) return null;
 		
+		double price = myBook.getPrice();
 		myBook.setName(book.getName());
 		myBook.setDescription(book.getDescription());
 		myBook.setPrice(book.getPrice());
@@ -100,6 +115,27 @@ public class BookService {
 		myBook.setPublished(book.getPublished());
 		myBook.setPublisher(publisherRepository.findOneById(book.getPublisher().getId()));
 		myBook.setCoverType(book.getCoverType());
+		
+		List<CatalogueItem> bookItems = catalogueItemRepository.findAllByBookId(myBook.getId());
+		for(CatalogueItem c : bookItems) 
+			if(c.getPriceEnd() == null) {
+				if(c.getPrice() != myBook.getPrice()) {
+					c.setPriceEnd(LocalDate.now());
+					catalogueItemRepository.save(c);
+					break;
+				}
+			}
+			
+		if(price != book.getPrice()) {
+			CatalogueItem newCatalogueItem = new CatalogueItem();
+			newCatalogueItem.setOtherProduct(null);
+			newCatalogueItem.setPriceEnd(null);
+			newCatalogueItem.setBook(myBook);
+			newCatalogueItem.setPrice(myBook.getPrice());
+			newCatalogueItem.setPriceStart(LocalDate.now());
+			catalogueItemRepository.save(newCatalogueItem);
+		}
+		
 		bookRepository.save(myBook);
 		
 		return myBook;
