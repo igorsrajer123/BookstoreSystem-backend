@@ -98,4 +98,11 @@ public class OtherProductController {
 		
 		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByShoppingCartItem(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getOtherProductByDeliveryItem/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OtherProductDto> findOtherProductByDeliveryItem(@PathVariable("id") Long id) {
+		if(otherProductService.findOneByDeliveryItem(id) == null) return new ResponseEntity<OtherProductDto>(new OtherProductDto(), HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByDeliveryItem(id)), HttpStatus.OK);
+	}
 }

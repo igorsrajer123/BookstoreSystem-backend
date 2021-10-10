@@ -37,6 +37,9 @@ public class Delivery {
 	@Column(name = "postalCode", nullable = false)
 	private String postalCode;
 	
+	@Column(name = "price", nullable = false)
+	private double price;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", nullable = false)
 	private DeliveryStatus status;
@@ -126,5 +129,13 @@ public class Delivery {
 
 	public void setDeliveryItems(List<DeliveryItem> deliveryItems) {
 		this.deliveryItems = deliveryItems;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }

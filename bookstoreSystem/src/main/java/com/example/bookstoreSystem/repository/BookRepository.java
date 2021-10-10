@@ -30,4 +30,6 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	Book findOneByBookReceiptItems_Id(Long id);
 	
 	Book findOneByShoppingCartItems_Id(Long id);
+	
+	Book findOneByDeliveryItems_Id(Long id);
 }

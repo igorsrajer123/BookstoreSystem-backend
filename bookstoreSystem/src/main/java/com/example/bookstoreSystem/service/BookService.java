@@ -116,4 +116,8 @@ public class BookService {
 	public Book findOneByShoppingCartItem(Long id) {
 		return bookRepository.findOneByShoppingCartItems_Id(id);
 	}
+	
+	public Book findOneByDeliveryItem(Long id) {
+		return bookRepository.findOneByDeliveryItems_Id(id);
+	}
 }

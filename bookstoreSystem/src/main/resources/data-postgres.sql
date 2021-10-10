@@ -168,7 +168,7 @@ INSERT INTO other_product(id, code, name, price, description, published, type, p
 INSERT INTO shopping_cart(customer_id) VALUES (1);
 
 --shopping cart items
-INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (2, 1, null, 1);
+INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (3, 1, null, 1);
 INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (1, null, 39, 1);
 INSERT INTO shopping_cart_item(amount, book_id, other_product_id, shopping_cart_id) VALUES (1, 3, null, 1);
 
@@ -287,7 +287,7 @@ INSERT INTO writer_books(writer_id, book_id) VALUES (9, 36);
 INSERT INTO writer_books(writer_id, book_id) VALUES (9, 37);
 
 --books in bookstores
-INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (23, 1, 1);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (1, 1, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (15, 2, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (40, 3, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (39, 4, 1);
@@ -325,7 +325,7 @@ INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (23, 35, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (11, 36, 1);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (10, 37, 1);
 
-INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (9, 1, 2);
+INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (2, 1, 2);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (5, 2, 2);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (16, 3, 2);
 INSERT INTO books_bookstores(amount, book_id, bookstore_id) VALUES (27, 4, 2);
@@ -381,4 +381,8 @@ INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (
 INSERT INTO receipt_item(amount, receipt_id, book_id, other_product_id) VALUES (1, 3, 5, null);
 
 --deliveries
-INSERT INTO delivery(contact_phone, created_date, delivery_address, note, postal_code, status, customer_id) VALUES ('555-333', '2021-02-02 16:43:00', 'Tomasevacki drum 44', 'Be fast!', '25000', 'DECLINED', 1);
+INSERT INTO delivery(contact_phone, created_date, delivery_address, note, postal_code, status, customer_id, price) VALUES ('555-333', '2021-02-02 16:43:00', 'Tomasevacki drum 44', 'Be fast!', '25000', 'DECLINED', 1, 5500);
+
+--delivery items
+INSERT INTO delivery_item(amount, book_id, other_product_id, delivery_id) VALUES (1, 5, null, 1);
+

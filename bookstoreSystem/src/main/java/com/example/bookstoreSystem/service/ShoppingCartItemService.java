@@ -113,8 +113,6 @@ public class ShoppingCartItemService {
 			for(OtherProductsBookstores o : myOtherProductsBookstores)
 				otherProductSum += o.getAmount();
 			
-			System.out.println(otherProductSum);
-			
 			if(amount > otherProductSum)
 				return false;
 			
@@ -124,8 +122,6 @@ public class ShoppingCartItemService {
 			int bookSum = 0;
 			for(BooksBookstores b : myBooksBookstores)
 				bookSum += b.getAmount();
-			
-			System.out.println(bookSum);
 			
 			if(amount > bookSum)
 				return false;

@@ -107,4 +107,8 @@ public class OtherProductService {
 	public OtherProduct findOneByShoppingCartItem(Long id) {
 		return otherProductRepository.findOneByShoppingCartItems_Id(id);
 	}
+	
+	public OtherProduct findOneByDeliveryItem(Long id) {
+		return otherProductRepository.findOneByDeliveryItems_Id(id);
+	}
 }

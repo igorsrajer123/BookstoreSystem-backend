@@ -97,4 +97,11 @@ public class BookController {
 		
 		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneByShoppingCartItem(id)), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getBookFromDeliveryItem/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BookDto> getBookByDeliveryItemId(@PathVariable("id") Long id) {
+		if(bookService.findOneByDeliveryItem(id) == null) return new ResponseEntity<BookDto>(new BookDto(), HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneByDeliveryItem(id)), HttpStatus.OK);
+	}
 }

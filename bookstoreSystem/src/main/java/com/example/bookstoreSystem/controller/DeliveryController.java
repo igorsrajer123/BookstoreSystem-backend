@@ -47,7 +47,7 @@ public class DeliveryController {
 	
 	@PutMapping(value = "/acceptDelivery/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Delivery> acceptDelivery(@PathVariable("id") Long id) throws MailException, InterruptedException {
-		emailService.deliveryAccepted();
+		emailService.deliveryAccepted(id);
 		return new ResponseEntity<Delivery>(deliveryService.acceptDelivery(id), HttpStatus.OK);
 	}
 }
