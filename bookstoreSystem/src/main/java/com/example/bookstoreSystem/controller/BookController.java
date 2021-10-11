@@ -105,4 +105,9 @@ public class BookController {
 		
 		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneByDeliveryItem(id)), HttpStatus.OK);
 	}
+	
+	@PutMapping(value = "/updateBookPrice/{id}/{price}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> updateBookPrice(@PathVariable("id") Long id, @PathVariable("price") double price) {
+		return new ResponseEntity<Double>(bookService.updatePrice(id, price), HttpStatus.OK);
+	}
 }

@@ -156,4 +156,34 @@ public class BookService {
 	public Book findOneByDeliveryItem(Long id) {
 		return bookRepository.findOneByDeliveryItems_Id(id);
 	}
+	
+	public double updatePrice(Long id, double price) {
+		Book myBook = bookRepository.findOneById(id);
+		double oldPrice = myBook.getPrice();
+		
+		myBook.setPrice(price);
+		bookRepository.save(myBook);
+		
+		List<CatalogueItem> bookItems = catalogueItemRepository.findAllByBookId(myBook.getId());
+		for(CatalogueItem c : bookItems) 
+			if(c.getPriceEnd() == null) {
+				if(c.getPrice() != price) {
+					c.setPriceEnd(LocalDate.now());
+					catalogueItemRepository.save(c);
+					break;
+				}
+			}
+		
+		if(oldPrice != price) {
+			CatalogueItem newItem = new CatalogueItem();
+			newItem.setBook(myBook);
+			newItem.setOtherProduct(null);
+			newItem.setPriceEnd(null);
+			newItem.setPrice(price);
+			newItem.setPriceStart(LocalDate.now());
+			catalogueItemRepository.save(newItem);
+		}
+		
+		return price;
+	}
 }

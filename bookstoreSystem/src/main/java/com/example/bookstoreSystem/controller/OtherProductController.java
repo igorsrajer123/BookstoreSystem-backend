@@ -106,4 +106,9 @@ public class OtherProductController {
 		
 		return new ResponseEntity<OtherProductDto>(new OtherProductDto(otherProductService.findOneByDeliveryItem(id)), HttpStatus.OK);
 	}
+	
+	@PutMapping(value = "/updateOtherProductPrice/{id}/{price}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> updateOtherProductPrice(@PathVariable("id") Long id, @PathVariable("price") double price) {
+		return new ResponseEntity<Double>(otherProductService.updatePrice(id, price), HttpStatus.OK);
+	}
 }

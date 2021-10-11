@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.bookstoreSystem.model.Bookstore;
 import com.example.bookstoreSystem.model.CatalogueItem;
 import com.example.bookstoreSystem.model.OtherProduct;
@@ -146,5 +145,36 @@ public class OtherProductService {
 	
 	public OtherProduct findOneByDeliveryItem(Long id) {
 		return otherProductRepository.findOneByDeliveryItems_Id(id);
+	}
+	
+	public double updatePrice(Long id, double price) {
+		OtherProduct myOtherProduct = otherProductRepository.findOneById(id);
+			double oldPrice = myOtherProduct.getPrice();
+			
+			myOtherProduct.setPrice(price);
+			otherProductRepository.save(myOtherProduct);
+
+			
+			List<CatalogueItem> otherProductItems = catalogueItemRepository.findAllByOtherProductId(myOtherProduct.getId());
+			for(CatalogueItem c : otherProductItems) 
+				if(c.getPriceEnd() == null) {
+					if(c.getPrice() != price) {
+						c.setPriceEnd(LocalDate.now());
+						catalogueItemRepository.save(c);
+						break;
+					}
+				}
+			
+			if(oldPrice != price) {
+				CatalogueItem newItem = new CatalogueItem();
+				newItem.setBook(null);
+				newItem.setOtherProduct(myOtherProduct);
+				newItem.setPriceEnd(null);
+				newItem.setPrice(price);
+				newItem.setPriceStart(LocalDate.now());
+				catalogueItemRepository.save(newItem);
+			}
+		
+			return price;
 	}
 }
