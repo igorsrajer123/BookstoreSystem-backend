@@ -36,6 +36,15 @@ public class BookstoreController {
 		return new ResponseEntity<List<BookstoreDto>>(bookstoresDto, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/findAllBookstoresByNameContaining/{str}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<BookstoreDto>> getAllByNameContaining(@PathVariable("str") String str) {
+		
+		List<BookstoreDto> bookstoresDto = new ArrayList<BookstoreDto>();
+		bookstoreService.findAllByNameContaining(str).forEach(bookstore -> bookstoresDto.add(new BookstoreDto(bookstore)));
+		
+		return new ResponseEntity<List<BookstoreDto>>(bookstoresDto, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/getBookstoreById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BookstoreDto> getBookstoreById(@PathVariable("id") Long id) {
 		if(bookstoreService.findOneById(id) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);

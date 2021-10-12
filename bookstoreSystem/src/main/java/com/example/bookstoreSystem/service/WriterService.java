@@ -72,4 +72,8 @@ public class WriterService {
 			writerRepository.save(w);
 		});
 	}
+	
+	public List<Writer> findAllByNameContaining(String str) {
+		return writerRepository.findAllByNameContainingIgnoreCase(str);
+	}
 }

@@ -32,4 +32,6 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	Book findOneByShoppingCartItems_Id(Long id);
 	
 	Book findOneByDeliveryItems_Id(Long id);
+	
+	List<Book> findAllByNameContainingIgnoreCase(String name);
 }

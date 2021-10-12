@@ -111,4 +111,12 @@ public class OtherProductController {
 	public ResponseEntity<?> updateOtherProductPrice(@PathVariable("id") Long id, @PathVariable("price") double price) {
 		return new ResponseEntity<Double>(otherProductService.updatePrice(id, price), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getOtherProductsByNameContaining/{str}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<OtherProductDto>> findOtherProductsByNameContainingString(@PathVariable("str") String str) {
+		List<OtherProductDto> otherProductsDto = new ArrayList<OtherProductDto>();
+		otherProductService.findAllByNameContainingString(str).forEach(otherProduct -> otherProductsDto.add(new OtherProductDto(otherProduct)));
+		
+		return new ResponseEntity<List<OtherProductDto>>(otherProductsDto, HttpStatus.OK);
+	}
 }

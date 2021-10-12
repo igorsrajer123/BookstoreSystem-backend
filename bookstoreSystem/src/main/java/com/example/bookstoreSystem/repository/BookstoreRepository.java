@@ -17,4 +17,6 @@ public interface BookstoreRepository extends JpaRepository<Bookstore, Long>{
 	Bookstore findOneByBookstoreAdministrators_Id(Long id);
 	
 	Bookstore findOneByBookstoreSellers_Id(Long id);
+	
+	List<Bookstore> findAllByNameContainingIgnoreCase(String str);
 }

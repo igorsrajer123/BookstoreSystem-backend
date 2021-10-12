@@ -70,4 +70,12 @@ public class WriterController {
 		writerService.addWriterNewBook(code, writers);
 		return new ResponseEntity<>( HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/findAllWritersByNameContaining/{str}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<WriterDto>> getWritersByNameContaining(@PathVariable("str") String str) {
+		List<WriterDto> writersDto = new ArrayList<WriterDto>();
+		writerService.findAllByNameContaining(str).forEach(writer -> writersDto.add(new WriterDto(writer)));
+		
+		return new ResponseEntity<List<WriterDto>>(writersDto , HttpStatus.OK);
+	}
 }

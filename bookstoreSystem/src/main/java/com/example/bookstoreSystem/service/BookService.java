@@ -186,4 +186,8 @@ public class BookService {
 		
 		return price;
 	}
+	
+	public List<Book> searchBooksWhereNameContainsString(String string) {
+		return bookRepository.findAllByNameContainingIgnoreCase(string);
+	}
 }

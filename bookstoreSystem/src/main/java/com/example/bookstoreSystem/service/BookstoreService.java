@@ -111,4 +111,8 @@ public class BookstoreService {
 		
 		return newBookstore;
 	}
+	
+	public List<Bookstore> findAllByNameContaining(String str) {
+		return bookstoreRepository.findAllByNameContainingIgnoreCase(str);
+	}
 }

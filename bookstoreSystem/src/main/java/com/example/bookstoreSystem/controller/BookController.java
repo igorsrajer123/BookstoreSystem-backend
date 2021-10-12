@@ -43,6 +43,14 @@ public class BookController {
 		return new ResponseEntity<BookDto>(new BookDto(bookService.findOneById(id)), HttpStatus.OK); 
 	}
 	
+	@GetMapping(value = "/getBooksWhereNameContains/{str}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<BookDto>> getBookByString(@PathVariable("str") String str) {
+		List<BookDto> booksDto = new ArrayList<BookDto>();
+		bookService.searchBooksWhereNameContainsString(str).forEach(book -> booksDto.add(new BookDto(book)));
+		
+		return new ResponseEntity<List<BookDto>>(booksDto, HttpStatus.OK); 
+	}
+	
 	@GetMapping(value = "/getBookByName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BookDto> getBookByName(@PathVariable("name") String name) {
 		if(bookService.findOneByName(name) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);

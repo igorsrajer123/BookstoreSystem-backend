@@ -94,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 												"/checkBookAvailableInBookstore/*/*/*", "/checkOtherProductAvailableInBookstore/*/*/*", "/getShoppingCartByUserId/*", "/getShoppingCartItems/*",
 												"/getBookFromShoppingCartItem/*", "/getOtherProductByShoppingCartItem/*", "/checkItemAvailable/*/*", "/getAllDeliveries", "/getCustomerByDeliveryId/*",
 												"/getDeliveryItemsByDeliveryId/*", "/getBookFromDeliveryItem/*", "/getOtherProductByDeliveryItem/*", "/getCatalogueItemsByBook/*", 
-												"/getCatalogueItemsByOtherProduct/*");
+												"/getCatalogueItemsByOtherProduct/*", "/getBooksWhereNameContains/*", "/getOtherProductsByNameContaining/*", "/findAllWritersByNameContaining/*",
+												"/findAllBookstoresByNameContaining/*");
 	}
 }

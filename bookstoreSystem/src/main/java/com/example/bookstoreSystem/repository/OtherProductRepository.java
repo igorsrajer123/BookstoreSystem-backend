@@ -30,4 +30,6 @@ public interface OtherProductRepository extends JpaRepository<OtherProduct, Long
 	OtherProduct findOneByShoppingCartItems_Id(Long id);
 	
 	OtherProduct findOneByDeliveryItems_Id(Long id);
+	
+	List<OtherProduct> findAllByNameContainingIgnoreCase(String name);
 }

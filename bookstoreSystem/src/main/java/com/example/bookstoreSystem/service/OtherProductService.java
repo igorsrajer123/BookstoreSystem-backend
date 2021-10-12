@@ -177,4 +177,8 @@ public class OtherProductService {
 		
 			return price;
 	}
+	
+	public List<OtherProduct> findAllByNameContainingString(String str) {
+		return otherProductRepository.findAllByNameContainingIgnoreCase(str);
+	}
 }

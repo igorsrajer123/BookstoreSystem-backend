@@ -17,4 +17,6 @@ public interface WriterRepository extends JpaRepository<Writer, Long>{
 	Writer findOneByName(String name);
 	
 	List<Writer> findAllByBooks_Name(String name);
+	
+	List<Writer> findAllByNameContainingIgnoreCase(String name);
 }
